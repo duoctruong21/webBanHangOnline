@@ -61,7 +61,7 @@
                         {
                             var i = 1;
                             foreach(var item in Model)
-                            {
+                            {                       
                                 <tr>
                                     <td>@i</td>
                                     <td>@item.Title</td>
@@ -71,9 +71,10 @@
                                         <a href="/admin/category/edit/@item.Id" class="btn btn-sm btn-danger">Xóa</a>
                                     </td>
                                 </tr>
+                                i++;
                             }
-                            
-                            }
+
+                        }
                         else
                         {
                                 <tr>
