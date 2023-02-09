@@ -42,5 +42,29 @@ namespace webBangHangOnline.Areas.admin.Controllers
             var item = _dbcontext.categories.Find(id);
             return View(item);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Category model)
+        {
+            if (ModelState.IsValid)
+            {
+                _dbcontext.categories.Attach(model);
+                model.ModifierDate = DateTime.Now;
+                model.Alias = webBangHangOnline.Models.Common.Fillter.LocDau(model.Title);
+                _dbcontext.Entry(model).Property(x => x.Title).IsModified = true;
+                _dbcontext.Entry(model).Property(x => x.Description).IsModified = true;
+                _dbcontext.Entry(model).Property(x => x.Position).IsModified = true;
+                _dbcontext.Entry(model).Property(x => x.SeoKeywords).IsModified = true;
+                _dbcontext.Entry(model).Property(x => x.SeoDescription).IsModified = true;
+                _dbcontext.Entry(model).Property(x => x.SeoTitle).IsModified = true;
+                _dbcontext.Entry(model).Property(x => x.Alias).IsModified = true;
+                _dbcontext.Entry(model).Property(x => x.ModifierBy).IsModified = true;
+                _dbcontext.Entry(model).Property(x => x.ModifierDate).IsModified = true;
+                _dbcontext.SaveChanges();
+                return RedirectToAction("index");
+            }
+            return View(model);
+        }
     }
 }
