@@ -32,6 +32,7 @@ namespace webBangHangOnline.Models
         public DbSet<Adv> advs { get; set; }
         public DbSet<Contact> contacts { get; set; }
         public DbSet<News> news { get; set; }
+        public object News { get; internal set; }
         public DbSet<Order> orders { get; set; }
         public DbSet<OrderDetail> ordersDetail { get; set; }
         public DbSet<Post> posts { get; set; }

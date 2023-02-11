@@ -10,11 +10,11 @@ namespace webBangHangOnline.Areas.admin.Controllers
 {
     public class CategoryController : Controller
     {
-        ApplicationDbContext _dbcontext = new ApplicationDbContext();
+        ApplicationDbContext db = new ApplicationDbContext();
         // GET: admin/Category
         public ActionResult Index()
         {
-            var items = _dbcontext.categories;
+            var items = db.categories;
             return View(items);
         }
 
@@ -30,8 +30,8 @@ namespace webBangHangOnline.Areas.admin.Controllers
                 model.CreatedDate= DateTime.Now;
                 model.ModifierDate= DateTime.Now;
                 model.Alias = webBangHangOnline.Models.Common.Fillter.LocDau(model.Title);
-                _dbcontext.categories.Add(model);
-                _dbcontext.SaveChanges();
+                db.categories.Add(model);
+                db.SaveChanges();
                 return RedirectToAction("index");
             }
             return View(model);
@@ -39,7 +39,7 @@ namespace webBangHangOnline.Areas.admin.Controllers
 
         public ActionResult Edit (int id)
         {
-            var item = _dbcontext.categories.Find(id);
+            var item = db.categories.Find(id);
             return View(item);
         }
 
@@ -49,22 +49,36 @@ namespace webBangHangOnline.Areas.admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _dbcontext.categories.Attach(model);
+                db.categories.Attach(model);
                 model.ModifierDate = DateTime.Now;
                 model.Alias = webBangHangOnline.Models.Common.Fillter.LocDau(model.Title);
-                _dbcontext.Entry(model).Property(x => x.Title).IsModified = true;
-                _dbcontext.Entry(model).Property(x => x.Description).IsModified = true;
-                _dbcontext.Entry(model).Property(x => x.Position).IsModified = true;
-                _dbcontext.Entry(model).Property(x => x.SeoKeywords).IsModified = true;
-                _dbcontext.Entry(model).Property(x => x.SeoDescription).IsModified = true;
-                _dbcontext.Entry(model).Property(x => x.SeoTitle).IsModified = true;
-                _dbcontext.Entry(model).Property(x => x.Alias).IsModified = true;
-                _dbcontext.Entry(model).Property(x => x.ModifierBy).IsModified = true;
-                _dbcontext.Entry(model).Property(x => x.ModifierDate).IsModified = true;
-                _dbcontext.SaveChanges();
+                /*db.Entry(model).Property(x => x.Title).IsModified = true;
+                db.Entry(model).Property(x => x.Description).IsModified = true;
+                db.Entry(model).Property(x => x.Position).IsModified = true;
+                db.Entry(model).Property(x => x.SeoKeywords).IsModified = true;
+                db.Entry(model).Property(x => x.SeoDescription).IsModified = true;
+                db.Entry(model).Property(x => x.SeoTitle).IsModified = true;
+                db.Entry(model).Property(x => x.Alias).IsModified = true;
+                db.Entry(model).Property(x => x.ModifierBy).IsModified = true;
+                db.Entry(model).Property(x => x.ModifierDate).IsModified = true;*/
+                db.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("index");
             }
             return View(model);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var item = db.categories.Find(id);
+            if (item != null)
+            {
+                //var DeleteItem = db.categories.Attach(item);
+                db.categories.Remove(item);
+                db.SaveChanges();
+                return Json(new {success = true});
+            }
+            return Json(new { success = false });
         }
     }
 }

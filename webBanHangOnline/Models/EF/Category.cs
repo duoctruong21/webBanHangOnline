@@ -27,6 +27,8 @@ namespace webBangHangOnline.Models.EF
         public string SeoDescription { get; set; }
         [StringLength(150)]
         public string SeoKeywords { get; set; }
+        public bool isActive { get; set; }
+
         public ICollection<News> news { get; set; }
         public ICollection<Post> Posts { get; set; }
     }

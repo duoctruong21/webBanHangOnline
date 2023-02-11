@@ -52,23 +52,27 @@
                         <tr>
                             <th>STT</th>
                             <th>Tên danh mục</th>
-                            <th>thứ tự</th>
-                            <th></th>
+                            <th>Thứ tự</th>
+                            <th>Trạng thái</th>
+                            <th>Quản lý</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if(Model!= null && Model.Any())
                         {
                             var i = 1;
+
                             foreach(var item in Model)
-                            {                       
-                                <tr>
-                                    <td>@i</td>
+                            {
+                                var strCheck = item.isActive ? "<a href='#'><i class='fa fa-check text-success'></i></a>" : "<a href='#'><i class='fa fa-ban text-danger'></i></a>";
+                                <tr id="trow_@item.Id">
+                                    <td class="index">@i</td>
                                     <td>@item.Title</td>
                                     <td>@item.Position</td>
+                                    <td>@Html.Raw(strCheck)</td>
                                     <td>
                                         <a href="/admin/category/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
-                                        <a href="/admin/category/edit/@item.Id" class="btn btn-sm btn-danger">Xóa</a>
+                                        <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
                                     </td>
                                 </tr>
                                 i++;
@@ -94,3 +98,30 @@
 
 </section>
 <!-- /.content -->
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('body').on('click', '.btnDelete', function () {
+                var id = $(this).data("id");
+                var conf = confirm("Bạn có muốn xóa bản ghi này không?");
+                /*Ajax*/
+                if (conf === true) {
+                    $.ajax({
+                        url: '/admin/category/delete',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (rs) {
+                            if (rs.success) {
+                                $('#trow_' + id).remove();
+                                $('.index').each(function (index) {
+                                    $(this).text(index + 1);
+                                })
+                            }
+                        }
+                    })
+                }
+            })
+        })
+    </script>    
+}
