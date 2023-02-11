@@ -24,6 +24,8 @@ namespace webBangHangOnline.Models.EF
         public string SeoDescription { get; set; }
         public string SeoKeywords { get; set; }
         public int CategoryId { get; set; }
+        public bool isActive { get; set; }
+
 
         public virtual Category Category { get; set; }
     }
