@@ -80,5 +80,18 @@ namespace webBangHangOnline.Areas.admin.Controllers
             }
             return Json(new { success = false });
         }
+
+        public ActionResult IsActive(int id)
+        {
+            var item = db.categories.Find(id);
+            if (item != null)
+            {
+                item.isActive = !item.isActive;
+                db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return Json(new { success = true, IsActive = item.isActive });
+            }
+            return Json(new { success = false });
+        }
     }
 }

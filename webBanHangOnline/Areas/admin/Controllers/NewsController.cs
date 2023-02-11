@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,9 +13,23 @@ namespace webBangHangOnline.Areas.admin.Controllers
     {
         // GET: admin/News
         ApplicationDbContext db = new ApplicationDbContext();
-        public ActionResult Index()
+        public ActionResult Index(string searchText,int? page)
         {
-            var items = db.news.OrderByDescending(x => x.Id).ToList();
+
+            var pageSize = 2;
+            if(page == null)
+            {
+                page = 1;
+            }
+            IEnumerable<News> items = db.news.OrderByDescending(x => x.Id);
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                items = items.Where(x => x.Alias.Contains(searchText) || webBangHangOnline.Models.Common.Fillter.BoDau(x.Title).ToLowerInvariant().Contains(webBangHangOnline.Models.Common.Fillter.BoDau(searchText.ToLowerInvariant())));
+            }
+            var pageIndex =page.HasValue ? Convert.ToInt32(page) : 1;
+            items = items.ToPagedList(pageIndex,pageSize);
+            ViewBag.PageSize = pageSize;
+            ViewBag.Page = page;
             return View(items);
         }
 
@@ -81,6 +96,25 @@ namespace webBangHangOnline.Areas.admin.Controllers
                 return Json(new { success = true, IsActive = item.isActive });
             }
             return Json(new { success = false });
+        }
+        [HttpPost]
+        public ActionResult DeleteAll(string ids)
+        {
+            if (!string.IsNullOrEmpty(ids))
+            {
+                var items = ids.Split(',');
+                if(items != null && items.Any())
+                {
+                    foreach(var item in items)
+                    {
+                        var obj =db.news.Find(Convert.ToInt32(item));
+                        db.news.Remove(obj);
+                        db.SaveChanges();
+                    }
+                }
+                return Json(new { success = true });
+            }
+            return Json(new {success = false});
         }
     }
 }

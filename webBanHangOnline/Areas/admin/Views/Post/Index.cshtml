@@ -1,9 +1,9 @@
 ﻿
-@model PagedList.PagedList<webBangHangOnline.Models.EF.News>
+@model PagedList.PagedList<webBangHangOnline.Models.EF.Post>
 @using PagedList.Mvc
 @using PagedList
 @{
-    ViewBag.Title = "Tin tức";
+    ViewBag.Title = "Bài viết";
     Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -16,7 +16,7 @@
             <a href="/admin" class="nav-link">Trang chủ</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/news" class="nav-link">@ViewBag.Title</a>
+            <a href="/admin/post" class="nav-link">@ViewBag.Title</a>
         </li>
     </ul>
 }
@@ -46,24 +46,11 @@
             <h3 class="card-title">Danh sách @ViewBag.Title</h3>
 
             <div class="card-tools">
-                <a href="/admin/news/add" class="btn btn-primary">Thêm mới</a>
+                <a href="/admin/post/add" class="btn btn-primary">Thêm mới</a>
                 <a href="#" class="btn btn-danger" id="BtnDeleteAll">Xóa</a>
             </div>
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="col-3">
-                    @using (Html.BeginForm("Index", "News", FormMethod.Get, new { }))
-                    {
-                        <div class="input-group input-group-sm">
-                            @Html.TextBox("searchText", "", new { @class = "form-control form-control-lg" })
-                            <span class="input-group-append">
-                                <button type="submit" class="btn btn-info btn-flat">Go!</button>
-                            </span>
-                        </div>
-                    }
-                </div>
-            </div>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -72,15 +59,15 @@
                         <th>Tiêu đề tin</th>
                         <th>Ngày tạo</th>
                         <th>Hình ảnh</th>
-                        <th width="100px">Trạng thái</th>
+                        <th>Trạng thái</th>
                         <th>Mô tả</th>
-                        <th width="150px">Quản lý</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @if (Model != null && Model.Any())
                     {
-                        var i = ((ViewBag.Page - 1) *ViewBag.PageSize)+1;
+                        var i = 1;
                         foreach (var item in Model)
                         {
                             var strCheck = item.isActive ? "<i class='fa fa-check text-success'></i>" : "<i class='fa fa-ban text-danger'></i>";
@@ -96,7 +83,7 @@
                                 <td>@item.Description</td>
 
                                 <td>
-                                    <a href="/admin/news/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
+                                    <a href="/admin/post/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
                                     <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
                                 </td>
                             </tr>
@@ -112,12 +99,7 @@
                     }
                 </tbody>
             </table>
-            <div class="row">
-                <div class="col-6"></div>
-                <div class="col-6" style="text-align: right;">
-                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-                </div>
-            </div>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new {page}))
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
@@ -157,7 +139,7 @@
                     var conf = confirm("bạn có muốn xóa không");
                     if (conf == true) {
                         $.ajax({
-                            url: '/admin/news/deleteAll',
+                            url: '/admin/post/deleteAll',
                             type: 'POST',
                             data: { ids: str },
                             success: function (rs) {
@@ -190,7 +172,7 @@
                 /*Ajax*/
                 if (conf === true) {
                     $.ajax({
-                        url: '/admin/news/delete',
+                        url: '/admin/post/delete',
                         type: 'POST',
                         data: { id: id },
                         success: function (rs) {
@@ -210,7 +192,7 @@
                 var btn = $(this);
                 var id = btn.data("id");
                 $.ajax({
-                    url: '/admin/news/IsActive',
+                    url: '/admin/post/IsActive',
                     type: 'POST',
                     data: { id: id },
                     success: function (rs) {
