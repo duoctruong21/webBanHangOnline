@@ -2,9 +2,17 @@
 @model PagedList.PagedList<webBangHangOnline.Models.EF.Post>
 @using PagedList.Mvc
 @using PagedList
+
 @{
     ViewBag.Title = "Bài viết";
     Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+    //hiển thị trang đầu trang cuối cảu pagedlist
+    var options = new PagedListRenderOptions
+    {
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        MaximumPageNumbersToDisplay = 5
+    };
 }
 
 @section naviheader{
@@ -51,6 +59,19 @@
             </div>
         </div>
         <div class="card-body">
+            <div class="row">
+                <div class="col-3">
+                    @using (Html.BeginForm("Index", "Post", FormMethod.Get, new { }))
+                    {
+                        <div class="input-group input-group-sm">
+                            @Html.TextBox("searchText", "", new { @class = "form-control form-control-lg" })
+                            <span class="input-group-append">
+                                <button type="submit" class="btn btn-info btn-flat">Go!</button>
+                            </span>
+                        </div>
+                    }
+                </div>
+            </div>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -67,7 +88,7 @@
                 <tbody>
                     @if (Model != null && Model.Any())
                     {
-                        var i = 1;
+                        var i = (ViewBag.Page - 1) * ViewBag.PageSize + 1;
                         foreach (var item in Model)
                         {
                             var strCheck = item.isActive ? "<i class='fa fa-check text-success'></i>" : "<i class='fa fa-ban text-danger'></i>";
@@ -99,7 +120,12 @@
                     }
                 </tbody>
             </table>
-            @Html.PagedListPager(Model, page => Url.Action("Index", new {page}))
+            <div class="row">
+                <div class="col-6"></div>
+                <div class="col-6" style="text-align:right;">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), options)
+                </div>
+            </div>
         </div>
         <!-- /.card-body -->
         <div class="card-footer">

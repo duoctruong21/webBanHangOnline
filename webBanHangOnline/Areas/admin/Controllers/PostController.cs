@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,10 +13,23 @@ namespace webBangHangOnline.Areas.admin.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
         // GET: admin/Post
-        public ActionResult Index()
+        public ActionResult Index(string searchText, int? page)
         {
-            var item = db.posts;
-            return View(item);
+            var pageSize = 1;
+            if (page == null)
+            {
+                page = 1;
+            }
+            IEnumerable<Post> items = db.posts.OrderByDescending(x => x.Id);
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                items = items.Where(x => x.Alias.Contains(searchText) || webBangHangOnline.Models.Common.Fillter.BoDau(x.Title).ToLowerInvariant().Contains(webBangHangOnline.Models.Common.Fillter.BoDau(searchText.ToLowerInvariant())));
+            }
+            var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            items = items.ToPagedList(pageIndex, pageSize);
+            ViewBag.PageSize = pageSize;
+            ViewBag.Page = page;
+            return View(items);
         }
 
         public ActionResult Add() {
@@ -29,7 +43,7 @@ namespace webBangHangOnline.Areas.admin.Controllers
             {
                 model.CreatedDate = DateTime.Now;
                 model.ModifierDate = DateTime.Now;
-                model.CategoryId = 12;
+                model.CategoryId = 1;
                 model.Alias = webBangHangOnline.Models.Common.Fillter.LocDau(model.Title);
                 db.posts.Add(model);
                 db.SaveChanges();

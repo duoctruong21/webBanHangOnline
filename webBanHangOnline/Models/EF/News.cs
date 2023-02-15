@@ -21,9 +21,14 @@ namespace webBangHangOnline.Models.EF
         public string Description { get; set; }
         [AllowHtml]
         public string Detail { get; set; }
+        [StringLength(250)]
+
         public string Image { get; set; }
+        [StringLength(250)]
         public string SeoTitle { get; set; }
+        [StringLength(500)]
         public string SeoDescription { get; set; }
+        [StringLength(250)]
         public string SeoKeywords { get; set; }
         public int CategoryId { get; set; }
         public bool isActive { get; set; }

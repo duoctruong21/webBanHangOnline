@@ -16,7 +16,7 @@ namespace webBangHangOnline.Areas.admin.Controllers
         public ActionResult Index(string searchText,int? page)
         {
 
-            var pageSize = 2;
+            var pageSize = 10;
             if(page == null)
             {
                 page = 1;
@@ -45,7 +45,7 @@ namespace webBangHangOnline.Areas.admin.Controllers
             {
                 model.CreatedDate = DateTime.Now;
                 model.ModifierDate = DateTime.Now;
-                model.CategoryId = 12;
+                model.CategoryId = 1;
                 model.Alias = webBangHangOnline.Models.Common.Fillter.LocDau(model.Title);
                 db.news.Add(model);
                 db.SaveChanges();
