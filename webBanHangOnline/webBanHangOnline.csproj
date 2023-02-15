@@ -48,7 +48,7 @@
   <ItemGroup>
     <Reference Include="CKFinder, Version=2.4.0.2631, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Downloads\ckfinder\bin\Debug\CKFinder.dll</HintPath>
+      <HintPath>..\..\..\Downloads\ckfinder\bin\Debug\CKFinder.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -185,6 +185,7 @@
     <Compile Include="Areas\admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\admin\Controllers\NewsController.cs" />
     <Compile Include="Areas\admin\Controllers\PostController.cs" />
+    <Compile Include="Areas\admin\Controllers\ProductCategoryController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -202,6 +203,14 @@
     <Compile Include="Migrations\202302150832153_updatetablepost.cs" />
     <Compile Include="Migrations\202302150832153_updatetablepost.designer.cs">
       <DependentUpon>202302150832153_updatetablepost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302151057152_updateProductCategory.cs" />
+    <Compile Include="Migrations\202302151057152_updateProductCategory.designer.cs">
+      <DependentUpon>202302151057152_updateProductCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302151103123_updatecategory.cs" />
+    <Compile Include="Migrations\202302151103123_updatecategory.designer.cs">
+      <DependentUpon>202302151103123_updatecategory.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -3129,7 +3138,6 @@
     <Content Include="Content\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
     <Content Include="Content\ckeditor\samples\sample_posteddata.php" />
     <Content Include="Content\ckeditor\skins\moono\readme.md" />
-    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <Content Include="Areas\admin\Views\News\Edit.cshtml" />
     <Content Include="Areas\admin\Views\Post\Index.cshtml" />
     <Content Include="Areas\admin\Views\Post\Add.cshtml" />
@@ -3140,6 +3148,10 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
+    <Content Include="Areas\admin\Views\ProductCategory\Index.cshtml" />
+    <Content Include="Areas\admin\Views\ProductCategory\Add.cshtml" />
+    <Content Include="Areas\admin\Views\ProductCategory\Edit.cshtml" />
     <None Include="Scripts\jquery-3.6.3.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.3.js" />
     <Content Include="Scripts\jquery-3.6.3.min.js" />
@@ -3227,6 +3239,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202302150832153_updatetablepost.resx">
       <DependentUpon>202302150832153_updatetablepost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302151057152_updateProductCategory.resx">
+      <DependentUpon>202302151057152_updateProductCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302151103123_updatecategory.resx">
+      <DependentUpon>202302151103123_updatecategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -15,7 +15,7 @@ namespace webBangHangOnline.Areas.admin.Controllers
         // GET: admin/Post
         public ActionResult Index(string searchText, int? page)
         {
-            var pageSize = 1;
+            var pageSize = 10;
             if (page == null)
             {
                 page = 1;
