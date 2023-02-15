@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class capnhat : DbMigration
+    public partial class createdatabase : DbMigration
     {
         public override void Up()
         {
@@ -53,10 +53,10 @@
                         Alias = c.String(),
                         Description = c.String(),
                         Detail = c.String(),
-                        Image = c.String(),
-                        SeoTitle = c.String(),
-                        SeoDescription = c.String(),
-                        SeoKeywords = c.String(),
+                        Image = c.String(maxLength: 250),
+                        SeoTitle = c.String(maxLength: 250),
+                        SeoDescription = c.String(maxLength: 500),
+                        SeoKeywords = c.String(maxLength: 250),
                         CategoryId = c.Int(nullable: false),
                         isActive = c.Boolean(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
@@ -152,12 +152,13 @@
                         Alias = c.String(maxLength: 250),
                         Description = c.String(),
                         ProductCode = c.String(maxLength: 50),
-                        Detail = c.String(),
+                        Detail = c.String(nullable: false),
                         Image = c.String(maxLength: 250),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         PriceSale = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Quantity = c.Int(nullable: false),
                         IsHome = c.Boolean(nullable: false),
+                        IsSale = c.Boolean(nullable: false),
                         IsFeature = c.Boolean(nullable: false),
                         IsHot = c.Boolean(nullable: false),
                         ProductCategoryId = c.Int(nullable: false),
@@ -180,11 +181,13 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Title = c.String(nullable: false, maxLength: 150),
+                        Alias = c.String(maxLength: 150),
                         Description = c.String(),
-                        Icon = c.String(),
-                        SeoTitle = c.String(),
-                        SeoDescription = c.String(),
-                        SeoKeywords = c.String(),
+                        Icon = c.String(maxLength: 250),
+                        SeoTitle = c.String(maxLength: 250),
+                        SeoDescription = c.String(maxLength: 500),
+                        SeoKeywords = c.String(maxLength: 250),
+                        isActive = c.Boolean(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.String(),
                         ModifierDate = c.DateTime(nullable: false),

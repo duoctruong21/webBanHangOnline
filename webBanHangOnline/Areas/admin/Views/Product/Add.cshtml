@@ -1,0 +1,193 @@
+﻿@model webBangHangOnline.Models.EF.Product
+@{
+    ViewBag.Title = "Sản phẩm";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+@section naviheader{
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin" class="nav-link">Trang chủ</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/product" class="nav-link">@ViewBag.Title </a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Thêm mới </a>
+        </li>
+    </ul>
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Thêm mới @ViewBag.Title</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">@ViewBag.Title</a></li>
+                    <li class="breadcrumb-item active">Thêm mới</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Thông tin @ViewBag.Title</h3>
+        </div>
+        <div class="card-body">
+            <div class="bs-stepper-content">
+                <div class="card">
+                    <div class="card-header p-2">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Thông tin chung</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Hình ảnh</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Seo</a></li>
+                        </ul>
+                    </div><!-- /.card-header -->
+                    <div class="card-body">
+                        @using (Html.BeginForm("Add", "product", FormMethod.Post, new { }))
+                        {
+                            @Html.AntiForgeryToken()                            
+                            <div class="tab-content">
+                            <div class="active tab-pane" id="activity">
+                                <!--Thông tin chung-->
+                                <div class="form-group">
+                                    <label for="inputTitle">Tiêu đề @ViewBag.Title</label>
+                                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Tiêu đề " + ViewBag.Title })
+                                    @Html.ValidationMessageFor(x => x.Title, null, new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPriceSale">Giá khuyến mãi </label>
+                                    @Html.TextAreaFor(x => x.PriceSale, new { @class = "form-control", @placeholder = "Giá khuyến mãi" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputDetail">Chi tiết</label>
+                                    @Html.TextAreaFor(x => x.Detail, new { @class = "form-control", @id = "txtDetail", @placeholder = "Chi tiết" })
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="inputDescription">Mô tả </label>
+                                            @Html.TextBoxFor(x => x.Description, new { @class = "form-control", @placeholder = "Mô tả" })
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="inputQuantity">Số lượng </label>
+                                            @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control", @placeholder = "Số lượng" })
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="inputPrice">Giá </label>
+                                            @Html.TextBoxFor(x => x.Price, new { @class = "form-control", @placeholder = "Giá bán" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="custom-control custom-checkbox">
+                                            @Html.CheckBoxFor(x => x.isActive, new { @class = "custom-control-input", @id = "isActiveCheckbox", @checked = "checked" })
+                                            <label for="isActiveCheckbox" class="custom-control-label">Trạng thái</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="custom-control custom-checkbox">
+                                            @Html.CheckBoxFor(x => x.IsHot, new { @class = "custom-control-input", @id = "isHotCheckbox" })
+                                            <label for="isHotCheckbox" class="custom-control-label">Hot</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="custom-control custom-checkbox">
+                                            @Html.CheckBoxFor(x => x.IsFeature, new { @class = "custom-control-input", @id = "isFeatureCheckbox" })
+                                            <label for="isFeatureCheckbox" class="custom-control-label">Hiện tại</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="custom-control custom-checkbox">
+                                            @Html.CheckBoxFor(x => x.IsSale, new { @class = "custom-control-input", @id = "isSaleCheckbox" })
+                                            <label for="isSaleCheckbox" class="custom-control-label">khuyến mãi</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="timeline">
+                                <!-- Hình ảnh -->
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Ảnh đại diện</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            @Html.TextBoxFor(x => x.Image, new { @id = "txtImage", @class = "form-control", @placeholder = "Ảnh đại diện" })
+                                        </div>
+                                        <div class="input-group-append">
+                                            <input type="button" value="Tải ảnh" onclick="browseServer('txtImage')" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="settings">
+                                <!---Seo-->
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Seo title</label>
+                                    @Html.TextAreaFor(x => x.SeoTitle, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Seo Description</label>
+                                    @Html.TextAreaFor(x => x.SeoDescription, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Seo Keywords</label>
+                                    @Html.TextAreaFor(x => x.SeoKeywords, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            
+                        </div>
+                            <div class="form-group">
+                                <a href="/admin/product" class="btn btn-danger">Quay lại</a>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        }
+                    </div><!-- /.card-body -->
+                </div>
+            </div>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+
+        </div>
+        <!-- /.card-footer-->
+    </div>
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            CKEDITOR.replace('txtDetail', {
+                customerConfig: '/Content/ckeditor/config.js',
+                extranAllowedContent: 'span',
+            });
+        });
+        function browseServer(field) {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                document.getElementById(field).value = fileUrl;
+            }
+            finder.popup();
+        }
+    </script>
+}

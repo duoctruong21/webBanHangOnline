@@ -14,7 +14,7 @@ namespace webBangHangOnline.Models.EF
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage =("Không được để trống mục này"))]
         [StringLength(250)]
         public string Title { get; set; }
         [StringLength(250)]
@@ -23,13 +23,18 @@ namespace webBangHangOnline.Models.EF
         [StringLength(50)]
         public string ProductCode { get; set; }
         [AllowHtml]
+        [Required(ErrorMessage = ("Không được để trống mục này"))]
         public string Detail { get; set; }
         [StringLength(250)]
         public string Image { get; set; }
+        [Required(ErrorMessage = ("Không được để trống mục này"))]
         public decimal Price { get; set; }
+        [Required(ErrorMessage = ("Không được để trống mục này"))]
         public decimal PriceSale { get;set; }
+        [Required(ErrorMessage = ("Không được để trống mục này"))]
         public int Quantity { get; set; }
         public bool IsHome { get; set; }
+        public bool IsSale { get; set; }
         public bool IsFeature { get; set; }
         public bool IsHot { get; set; }
         public int ProductCategoryId { get; set; }
@@ -40,8 +45,6 @@ namespace webBangHangOnline.Models.EF
         [StringLength(250)]
         public string SeoKeywords { get; set; }
         public bool isActive { get; set; }
-
-
-        public virtual ProductCategory Category { get; set; }
+        public virtual ProductCategory productCategory { get; set; }
     }
 }

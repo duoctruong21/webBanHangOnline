@@ -186,31 +186,16 @@
     <Compile Include="Areas\admin\Controllers\NewsController.cs" />
     <Compile Include="Areas\admin\Controllers\PostController.cs" />
     <Compile Include="Areas\admin\Controllers\ProductCategoryController.cs" />
+    <Compile Include="Areas\admin\Controllers\ProductController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202302150359211_capnhat.cs" />
-    <Compile Include="Migrations\202302150359211_capnhat.designer.cs">
-      <DependentUpon>202302150359211_capnhat.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202302150823194_tablepost.cs" />
-    <Compile Include="Migrations\202302150823194_tablepost.designer.cs">
-      <DependentUpon>202302150823194_tablepost.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202302150832153_updatetablepost.cs" />
-    <Compile Include="Migrations\202302150832153_updatetablepost.designer.cs">
-      <DependentUpon>202302150832153_updatetablepost.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202302151057152_updateProductCategory.cs" />
-    <Compile Include="Migrations\202302151057152_updateProductCategory.designer.cs">
-      <DependentUpon>202302151057152_updateProductCategory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202302151103123_updatecategory.cs" />
-    <Compile Include="Migrations\202302151103123_updatecategory.designer.cs">
-      <DependentUpon>202302151103123_updatecategory.cs</DependentUpon>
+    <Compile Include="Migrations\202302151805468_createdatabase.cs" />
+    <Compile Include="Migrations\202302151805468_createdatabase.designer.cs">
+      <DependentUpon>202302151805468_createdatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -3127,17 +3112,6 @@
     <Content Include="Areas\admin\Views\Category\Edit.cshtml" />
     <Content Include="Areas\admin\Views\News\Index.cshtml" />
     <Content Include="Areas\admin\Views\News\Add.cshtml" />
-    <Content Include="Content\ckeditor\CHANGES.md" />
-    <Content Include="Content\ckeditor\LICENSE.md" />
-    <Content Include="Content\ckeditor\plugins\scayt\LICENSE.md" />
-    <Content Include="Content\ckeditor\plugins\scayt\README.md" />
-    <Content Include="Content\ckeditor\plugins\wsc\LICENSE.md" />
-    <Content Include="Content\ckeditor\plugins\wsc\README.md" />
-    <Content Include="Content\ckeditor\README.md" />
-    <Content Include="Content\ckeditor\samples\assets\posteddata.php" />
-    <Content Include="Content\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
-    <Content Include="Content\ckeditor\samples\sample_posteddata.php" />
-    <Content Include="Content\ckeditor\skins\moono\readme.md" />
     <Content Include="Areas\admin\Views\News\Edit.cshtml" />
     <Content Include="Areas\admin\Views\Post\Index.cshtml" />
     <Content Include="Areas\admin\Views\Post\Add.cshtml" />
@@ -3152,6 +3126,20 @@
     <Content Include="Areas\admin\Views\ProductCategory\Index.cshtml" />
     <Content Include="Areas\admin\Views\ProductCategory\Add.cshtml" />
     <Content Include="Areas\admin\Views\ProductCategory\Edit.cshtml" />
+    <Content Include="Areas\admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\admin\Views\Product\Add.cshtml" />
+    <Content Include="Content\ckeditor\CHANGES.md" />
+    <Content Include="Content\ckeditor\LICENSE.md" />
+    <Content Include="Content\ckeditor\plugins\scayt\LICENSE.md" />
+    <Content Include="Content\ckeditor\plugins\scayt\README.md" />
+    <Content Include="Content\ckeditor\plugins\wsc\LICENSE.md" />
+    <Content Include="Content\ckeditor\plugins\wsc\README.md" />
+    <Content Include="Content\ckeditor\README.md" />
+    <Content Include="Content\ckeditor\samples\assets\posteddata.php" />
+    <Content Include="Content\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
+    <Content Include="Content\ckeditor\samples\sample_posteddata.php" />
+    <Content Include="Content\ckeditor\skins\moono\readme.md" />
+    <Content Include="Areas\admin\Views\Product\Edit.cshtml" />
     <None Include="Scripts\jquery-3.6.3.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.3.js" />
     <Content Include="Scripts\jquery-3.6.3.min.js" />
@@ -3231,20 +3219,8 @@
     <Content Include="Scripts\jquery-3.6.3.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202302150359211_capnhat.resx">
-      <DependentUpon>202302150359211_capnhat.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202302150823194_tablepost.resx">
-      <DependentUpon>202302150823194_tablepost.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202302150832153_updatetablepost.resx">
-      <DependentUpon>202302150832153_updatetablepost.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202302151057152_updateProductCategory.resx">
-      <DependentUpon>202302151057152_updateProductCategory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202302151103123_updatecategory.resx">
-      <DependentUpon>202302151103123_updatecategory.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202302151805468_createdatabase.resx">
+      <DependentUpon>202302151805468_createdatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
