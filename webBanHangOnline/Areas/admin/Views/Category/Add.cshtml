@@ -64,13 +64,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Thứ tự </label>
-                        @Html.TextBoxFor(x => x.Position, new { @class = "form-control", @Value = "1" })
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">
-                            Trạng thái
-                            @Html.CheckBoxFor(x => x.isActive, new { @class = "form-control", @id = "txtDetail" })
-                        </label>
+                        @Html.TextBoxFor(x => x.Position, new { @class = "form-control numPosition", @Value = "1" })
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Seo title</label>
@@ -83,6 +77,12 @@
                     <div class="form-group">
                         <label for="exampleInputPassword1">Seo Keywords</label>
                         @Html.TextAreaFor(x => x.SeoKeywords, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            @Html.CheckBoxFor(x => x.isActive, new { @class = "custom-control-input", @id = "isSaleCheckbox", @checked = "checked"})
+                            <label for="isSaleCheckbox" class="custom-control-label">Trạng thái</label>
+                        </div>
                     </div>
                 </div>
                     <div class="form-group">
@@ -104,3 +104,6 @@
 
 </section>
 <!-- /.content -->
+<script>
+    new AutoNumeric('.numPosition', { decimalPlaces: 0 })
+</script>

@@ -30,6 +30,10 @@ namespace webBangHangOnline.Areas.admin.Controllers
                 model.CreatedDate= DateTime.Now;
                 model.ModifierDate= DateTime.Now;
                 model.Alias = webBangHangOnline.Models.Common.Fillter.LocDau(model.Title);
+                if(model.SeoTitle == "" || model.SeoTitle == null)
+                {
+                    model.SeoTitle = model.Title;
+                }
                 db.categories.Add(model);
                 db.SaveChanges();
                 return RedirectToAction("index");

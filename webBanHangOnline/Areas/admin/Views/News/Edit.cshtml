@@ -83,12 +83,6 @@
                             @Html.TextAreaFor(x => x.Detail, new { @class = "form-control", @id = "txtDetail" })
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">
-                                Trạng thái
-                                @Html.CheckBoxFor(x => x.isActive, new { @class = "form-control", @id = "txtDetail" })
-                            </label>                            
-                        </div>
-                        <div class="form-group">
                             <label for="exampleInputPassword1">Seo title</label>
                             @Html.TextAreaFor(x => x.SeoTitle, new { @class = "form-control" })
                         </div>
@@ -99,6 +93,12 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Seo Keywords</label>
                             @Html.TextAreaFor(x => x.SeoKeywords, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox mb-4">
+                                @Html.CheckBoxFor(x => x.isActive, new { @class = "custom-control-input", @id = "isActiveCheckbox"})
+                                <label for="isActiveCheckbox" class="custom-control-label">Trạng thái</label>
+                            </div>
                         </div>
                     </div>
                         <div class="form-group">

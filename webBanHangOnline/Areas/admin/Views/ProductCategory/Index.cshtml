@@ -52,6 +52,7 @@
                     <tr>
                         <th>STT</th>
                         <th>Tên @ViewBag.Title</th>
+                        <th>Ngày tạo</th>
                         <th>Trạng thái</th>
                         <th>Quản lý</th>
                     </tr>
@@ -67,6 +68,7 @@
                             <tr id="trow_@item.Id">
                                 <td class="index">@i</td>
                                 <td>@item.Title</td>
+                                <td>@item.CreatedDate</td>
                                 <td><a href="#" data-id="@item.Id" class="btnActive"> @Html.Raw(strCheck)</a></td>
                                 <td>
                                     <a href="/admin/productcategory/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>

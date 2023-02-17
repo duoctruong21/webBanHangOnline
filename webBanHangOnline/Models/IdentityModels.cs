@@ -37,6 +37,7 @@ namespace webBangHangOnline.Models
         public DbSet<OrderDetail> ordersDetail { get; set; }
         public DbSet<Post> posts { get; set; }
         public DbSet<Product> products { get; set; }
+        public DbSet<ProductImage> productImage { get; set; }
         public DbSet<ProductCategory> productsCategory { get; set; }
         public DbSet<Subcribe> subcribe { get; set; }
         public DbSet<SystemSetting> systemSetting { get; set; }

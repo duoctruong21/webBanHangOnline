@@ -11,6 +11,11 @@ namespace webBangHangOnline.Models.EF
     [Table("tb_product")]
     public class Product :CommonAbstract
     {
+        public Product() { 
+            this.ProductImage = new HashSet<ProductImage>();
+            this.OrderDetails = new HashSet<OrderDetail>();
+        }
+
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -23,15 +28,11 @@ namespace webBangHangOnline.Models.EF
         [StringLength(50)]
         public string ProductCode { get; set; }
         [AllowHtml]
-        [Required(ErrorMessage = ("Không được để trống mục này"))]
         public string Detail { get; set; }
         [StringLength(250)]
         public string Image { get; set; }
-        [Required(ErrorMessage = ("Không được để trống mục này"))]
         public decimal Price { get; set; }
-        [Required(ErrorMessage = ("Không được để trống mục này"))]
-        public decimal PriceSale { get;set; }
-        [Required(ErrorMessage = ("Không được để trống mục này"))]
+        public decimal? PriceSale { get;set; }
         public int Quantity { get; set; }
         public bool IsHome { get; set; }
         public bool IsSale { get; set; }
@@ -45,6 +46,8 @@ namespace webBangHangOnline.Models.EF
         [StringLength(250)]
         public string SeoKeywords { get; set; }
         public bool isActive { get; set; }
-        public virtual ProductCategory productCategory { get; set; }
+        public virtual ProductCategory ProductCategory { get; set; }
+        public virtual ICollection<ProductImage>  ProductImage { get; set; }
+        public virtual ICollection<OrderDetail>  OrderDetails { get; set; }
     }
 }

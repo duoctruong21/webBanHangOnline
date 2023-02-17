@@ -27,6 +27,7 @@
     </ul>
 }
 <!-- Content Header (Page header) -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -75,10 +76,11 @@
                     <tr>
                         <th><input type="checkbox" id="SelectAll" /></th>
                         <th>STT</th>
+                        <th>Hình ảnh</th>
                         <th>Tên @ViewBag.title</th>
+                        <th>SKU</th>
                         <th>Tên danh mục sản phẩm</th>
                         <th>Ngày tạo</th>
-                        <th>Hình ảnh</th>
                         <th>Số lượng</th>
                         <th>Giá</th>
                         <th width="100px">Trạng thái</th>
@@ -96,10 +98,20 @@
                             <tr id="trow_@item.Id">
                                 <td><input type="checkbox" class="cbkItem" value="@item.Id" /></td>
                                 <td class="index">@i</td>
+                                <td>
+                                    @if (item.Image == "" || item.Image == null)
+                                    {
+                                        <img class="imgProduct" data-id="@item.Id" width="50" height="50" src="@item.Image" />
+                                    }
+                                    else
+                                    {
+                                        <img class="imgProduct" data-id="@item.Id" width="50" src="@item.Image" />
+                                    }
+                                </td>
                                 <td>@item.Title</td>
-                                <td>@item.productCategory.Title</td>
+                                <td>@item.ProductCode</td>
+                                <td>@item.ProductCategory.Title</td>
                                 <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
-                                <td><img width="150px" src="@item.Image" /></td>
                                 <td>@item.Quantity</td>
                                 <td>@item.Price</td>
                                 <td class="text-center">
@@ -141,11 +153,35 @@
 
 </section>
 <!-- /.content -->
+<div id="dialog">
+    <iframe id="myFrame" style="border:0; width:100%; height:100%"></iframe>
+</div>
 
 @section scripts{
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
 
         $(document).ready(function () {
+            //Hiển thị form load ảnh
+            $('#dialog').dialog({
+                autoOpen: false,
+                show: "fade",
+                hide: "fade",
+                modal: true,
+                height: '600',
+                width: '700',
+                resizable: true,
+                title: 'Quản lý sản phẩm',
+                close: function () {
+                    window.location.reload();
+                }
+            });
+            $('body').on('click','.imgProduct', function () {
+                var proid = $(this).attr("data-id");
+                $("#dialog #myFrame").attr("src", "/admin/productimage/index?id=" + proid)
+                $('#dialog').dialog('open');
+                return false;
+            })
             //xóa tất cả
             $('body').on('click', '#BtnDeleteAll', function (e) {
                 e.preventDefault();
@@ -175,7 +211,7 @@
                             data: { ids: str },
                             success: function (rs) {
                                 if (rs.success) {
-                                    location.reload();
+                                    window.location.reload();
                                 }
                             }
                         });

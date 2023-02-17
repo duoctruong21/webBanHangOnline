@@ -43,7 +43,18 @@ namespace webBangHangOnline.Areas.admin.Controllers
             {
                 model.CreatedDate = DateTime.Now;
                 model.ModifierDate = DateTime.Now;
-                model.CategoryId = 1;
+                List<Category> category = db.categories.ToList();
+                foreach (var item in category)
+                {
+                    if (webBangHangOnline.Models.Common.Fillter.BoDau(item.Title).ToLowerInvariant() == webBangHangOnline.Models.Common.Fillter.BoDau("Bài viết").ToLowerInvariant())
+                    {
+                        model.CategoryId = item.Id;
+                    }
+                }
+                if (model.SeoTitle == null || model.SeoTitle == "")
+                {
+                    model.SeoTitle = model.Title;
+                }
                 model.Alias = webBangHangOnline.Models.Common.Fillter.LocDau(model.Title);
                 db.posts.Add(model);
                 db.SaveChanges();

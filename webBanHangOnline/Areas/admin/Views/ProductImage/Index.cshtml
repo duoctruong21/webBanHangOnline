@@ -1,0 +1,140 @@
+﻿@model IEnumerable<webBangHangOnline.Models.EF.ProductImage>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+<style>
+    .glImg {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+    .glImg li {
+        margin-right: 5px;
+        display: inline-block;
+        position: relative;
+    }
+    .box-btn {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width:100%;
+        text-align:center;
+    }
+</style>
+
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Ảnh sản phẩm</h3>
+
+            <div class="card-tools">
+                <input type="button" class="btn btn-primary" value="Tải ảnh" onclick="browseServer()" />
+                <button type="button" class="btn btn-danger" data-card-widget="remove" title="Remove">
+                    Xóa ảnh
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <ul class="glImg">
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        var strCheck = item.IsDefault ? "<i class=\"fa fa-check\"></i>" : "x";
+                        <li id="trow_"+ @item.Id>
+                            <img src="@item.Image" width="100" />
+                            <div class="box-btn">
+                                <a href="#" data-id="@item.Id" class="btn btn-danger btnDel"><i class="fa fa-trash"></i></a>
+                                @if (item.IsDefault)
+                                {
+                                    <a href="#" data-id="@item.Id" class="btn btn-success btnActive">@Html.Raw(strCheck)</a>
+                                }
+                                else
+                                {
+                                    <a href="#" data-id="@item.Id" class="btn btn-warning btnActive">X</a>
+                                }
+
+                            </div>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+
+        </div>
+        <!-- /.card-footer-->
+    </div>
+    <!-- /.card -->
+
+</section>
+
+<script>
+    $(document).ready(function () {
+        $('body').on('click', '.btnDel', function () {
+            var id = $(this).data('id');
+            var conf = confirm('Bạn có muốn xóa ảnh không?');
+            if (conf === true) {
+                $.ajax({
+                    url: '/admin/productimage/delete',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.success) {
+                            $('#trow_' + id).remove();
+                        }
+                    }
+                })
+            }
+        })
+
+        $('body').on('click', '.btnActive', function (e) {
+            var btn = $(this);
+            var id = btn.data('id');
+            var conf = confirm('Bạn có muốn đổi trạng thái của ảnh không?');
+            if (conf === true) {
+                $.ajax({
+                    url: '/admin/productimage/ChangeDefault',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.success) {
+                            if (rs.IsDefault) {
+                                btn.html("<i class=\"fa fa-check\"></i>");
+                            } else {
+                                btn.html("X");
+                            }
+                            window.location.reload();
+                        }
+                    }
+                })
+            }
+        })
+    })
+    function browseServer(field) {
+        var finder = new CKFinder();
+        finder.selectActionFunction = function (fileUrl) {
+            addImg(@ViewBag.productId,fileUrl);
+        }
+        finder.popup();
+    }
+    function addImg(id, url) {
+        $.ajax({
+            url: '/admin/productimage/addimg',
+            type: 'POST',
+            data: { productId: id,url:url },
+            success: function (rs) {
+                if (rs.success) {
+                    window.location.reload();
+                }
+            }
+        })
+    }
+</script>
+

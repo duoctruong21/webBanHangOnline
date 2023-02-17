@@ -33,27 +33,60 @@ namespace webBangHangOnline.Areas.admin.Controllers
         }
         public ActionResult Add()
         {
+            ViewBag.ProductCategory = new SelectList(db.productsCategory,"Id", "Title");
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(Product model)
+        public ActionResult Add(Product model, List<string> Images, List<int> rDefault)
         {
             if (ModelState.IsValid)
             {
+                if(Images != null && Images.Count > 0)
+                {
+                    for(int i=0; i< Images.Count; i++)
+                    {
+                        if(i+1 == rDefault[0])
+                        {
+                            model.ProductImage.Add(new ProductImage
+                            {
+                                ProductId = model.Id,
+                                Image = Images[i],
+                                IsDefault = true,
+
+                            });
+                            model.Image = Images[i];
+                        }
+                        else
+                        {
+                            model.ProductImage.Add(new ProductImage
+                            {
+                                ProductId = model.Id,
+                                Image = Images[i],
+                                IsDefault = false
+                            });
+                        }
+                    }
+                }
                 model.CreatedDate = DateTime.Now;
                 model.ModifierDate = DateTime.Now;
-                model.ProductCategoryId = 3;
+                if (string.IsNullOrEmpty(model.SeoTitle))
+                {
+                    model.SeoTitle = model.Title;
+                }
                 model.Alias = webBangHangOnline.Models.Common.Fillter.LocDau(model.Title);
                 db.products.Add(model);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.ProductCategory = new SelectList(db.productsCategory, "Id", "Title");
             return View(model);
         }
         public ActionResult Edit(int id)
         {
             var item = db.products.Find(id);
+            ViewBag.ProductCategory = new SelectList(db.productsCategory, "Id", "Title");
+
             return View(item);
         }
         [HttpPost]
@@ -62,6 +95,7 @@ namespace webBangHangOnline.Areas.admin.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 model.ModifierDate = DateTime.Now;
                 model.Alias = webBangHangOnline.Models.Common.Fillter.LocDau(model.Title);
                 db.products.Attach(model);
@@ -69,6 +103,7 @@ namespace webBangHangOnline.Areas.admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.ProductCategory = new SelectList(db.productsCategory, "Id", "Title");
             return View(model);
         }
 

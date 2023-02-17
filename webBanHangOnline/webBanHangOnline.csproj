@@ -187,6 +187,7 @@
     <Compile Include="Areas\admin\Controllers\PostController.cs" />
     <Compile Include="Areas\admin\Controllers\ProductCategoryController.cs" />
     <Compile Include="Areas\admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\admin\Controllers\ProductImageController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -196,6 +197,18 @@
     <Compile Include="Migrations\202302151805468_createdatabase.cs" />
     <Compile Include="Migrations\202302151805468_createdatabase.designer.cs">
       <DependentUpon>202302151805468_createdatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302160715596_update_tbproduct_tbproductimage.cs" />
+    <Compile Include="Migrations\202302160715596_update_tbproduct_tbproductimage.designer.cs">
+      <DependentUpon>202302160715596_update_tbproduct_tbproductimage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302160727427_update_productimage.cs" />
+    <Compile Include="Migrations\202302160727427_update_productimage.designer.cs">
+      <DependentUpon>202302160727427_update_productimage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302160959450_tbproduct_pricesale.cs" />
+    <Compile Include="Migrations\202302160959450_tbproduct_pricesale.designer.cs">
+      <DependentUpon>202302160959450_tbproduct_pricesale.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -3140,6 +3153,8 @@
     <Content Include="Content\ckeditor\samples\sample_posteddata.php" />
     <Content Include="Content\ckeditor\skins\moono\readme.md" />
     <Content Include="Areas\admin\Views\Product\Edit.cshtml" />
+    <Content Include="Areas\admin\Views\ProductImage\Index.cshtml" />
+    <Content Include="Areas\admin\Views\Shared\_LayoutEmpty.cshtml" />
     <None Include="Scripts\jquery-3.6.3.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.3.js" />
     <Content Include="Scripts\jquery-3.6.3.min.js" />
@@ -3151,6 +3166,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Upload\Image\pie.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3221,6 +3237,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202302151805468_createdatabase.resx">
       <DependentUpon>202302151805468_createdatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302160715596_update_tbproduct_tbproductimage.resx">
+      <DependentUpon>202302160715596_update_tbproduct_tbproductimage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302160727427_update_productimage.resx">
+      <DependentUpon>202302160727427_update_productimage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302160959450_tbproduct_pricesale.resx">
+      <DependentUpon>202302160959450_tbproduct_pricesale.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
