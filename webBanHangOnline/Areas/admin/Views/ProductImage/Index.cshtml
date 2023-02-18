@@ -78,7 +78,7 @@
 <script>
     $(document).ready(function () {
         $('body').on('click', '.btnDel', function () {
-            var id = $(this).data('id');
+            var id = $(this).data("id");
             var conf = confirm('Bạn có muốn xóa ảnh không?');
             if (conf === true) {
                 $.ajax({
@@ -88,6 +88,7 @@
                     success: function (rs) {
                         if (rs.success) {
                             $('#trow_' + id).remove();
+                            window.location.reload();
                         }
                     }
                 })

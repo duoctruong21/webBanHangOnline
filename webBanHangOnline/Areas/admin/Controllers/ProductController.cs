@@ -95,7 +95,6 @@ namespace webBangHangOnline.Areas.admin.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 model.ModifierDate = DateTime.Now;
                 model.Alias = webBangHangOnline.Models.Common.Fillter.LocDau(model.Title);
                 db.products.Attach(model);
@@ -128,6 +127,31 @@ namespace webBangHangOnline.Areas.admin.Controllers
                 db.Entry(item).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return Json(new { success = true, IsActive = item.isActive });
+            }
+            return Json(new { success = false });
+        }
+
+        public ActionResult IsHome(int id)
+        {
+            var item = db.products.Find(id);
+            if (item != null)
+            {
+                item.IsHome = !item.IsHome;
+                db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return Json(new { success = true, isHome = item.IsHome });
+            }
+            return Json(new { success = false });
+        }
+        public ActionResult IsSale(int id)
+        {
+            var item = db.products.Find(id);
+            if (item != null)
+            {
+                item.IsSale = !item.IsSale;
+                db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return Json(new { success = true, isSale = item.IsSale });
             }
             return Json(new { success = false });
         }

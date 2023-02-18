@@ -84,6 +84,8 @@
                         <th>Số lượng</th>
                         <th>Giá</th>
                         <th width="100px">Trạng thái</th>
+                        <th width="50px">Home</th>
+                        <th width="50px">Sale</th>
                         <th>Mô tả</th>
                         <th width="150px">Quản lý</th>
                     </tr>
@@ -95,6 +97,9 @@
                         foreach (var item in Model)
                         {
                             var strCheck = item.isActive ? "<i class='fa fa-check text-success'></i>" : "<i class='fa fa-ban text-danger'></i>";
+                            var strHome = item.IsHome ? "<i class='fa fa-check text-success'></i>" : "<i class='fa fa-ban text-danger'></i>";
+                            var strSale = item.IsSale ? "<i class='fa fa-check text-success'></i>" : "<i class='fa fa-ban text-danger'></i>";
+                            string prices = item.Price.ToString("###,###,###.##");
                             <tr id="trow_@item.Id">
                                 <td><input type="checkbox" class="cbkItem" value="@item.Id" /></td>
                                 <td class="index">@i</td>
@@ -113,9 +118,15 @@
                                 <td>@item.ProductCategory.Title</td>
                                 <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
                                 <td>@item.Quantity</td>
-                                <td>@item.Price</td>
+                                <td>@prices</td>
                                 <td class="text-center">
                                     <a href="#" data-id="@item.Id" class="btnActive">@Html.Raw(strCheck)</a>
+                                </td>
+                                <td class="text-center">
+                                    <a href="#" data-id="@item.Id" class="btnHome">@Html.Raw(strHome)</a>
+                                </td>
+                                <td class="text-center">
+                                    <a href="#" data-id="@item.Id" class="btnSale">@Html.Raw(strSale)</a>
                                 </td>
                                 <td>@item.Description</td>
 
@@ -253,7 +264,7 @@
                     })
                 }
             })
-            // thay đổi trạng thái của tin tức
+            // thay đổi trạng thái 
             $('body').on('click', '.btnActive', function (e) {
                 e.preventDefault();
                 var btn = $(this);
@@ -265,6 +276,46 @@
                     success: function (rs) {
                         if (rs.success) {
                             if (rs.IsActive) {
+                                btn.html("<i class='fa fa-check text-success'></i>");
+                            } else {
+                                btn.html("<i class='fa fa-ban text-danger'></i>");
+                            }
+                        }
+                    }
+                })
+            })
+            // thay đổi trạng thái home
+            $('body').on('click', '.btnHome', function (e) {
+                e.preventDefault();
+                var btn = $(this);
+                var id = btn.data("id");
+                $.ajax({
+                    url: '/admin/product/IsHome',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.success) {
+                            if (rs.isHome) {
+                                btn.html("<i class='fa fa-check text-success'></i>");
+                            } else {
+                                btn.html("<i class='fa fa-ban text-danger'></i>");
+                            }
+                        }
+                    }
+                })
+            })
+            // thay đổi trạng thái Sale
+            $('body').on('click', '.btnSale', function (e) {
+                e.preventDefault();
+                var btn = $(this);
+                var id = btn.data("id");
+                $.ajax({
+                    url: '/admin/product/IsSale',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.success) {
+                            if (rs.isSale) {
                                 btn.html("<i class='fa fa-check text-success'></i>");
                             } else {
                                 btn.html("<i class='fa fa-ban text-danger'></i>");

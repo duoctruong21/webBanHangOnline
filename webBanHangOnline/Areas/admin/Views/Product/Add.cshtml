@@ -107,28 +107,34 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-3">
+                                        <div class="col-2">
                                             <div class="custom-control custom-checkbox">
                                                 @Html.CheckBoxFor(x => x.isActive, new { @class = "custom-control-input", @id = "isActiveCheckbox", @checked = "checked" })
                                                 <label for="isActiveCheckbox" class="custom-control-label">Trạng thái</label>
                                             </div>
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-2">
                                             <div class="custom-control custom-checkbox">
                                                 @Html.CheckBoxFor(x => x.IsHot, new { @class = "custom-control-input", @id = "isHotCheckbox" })
                                                 <label for="isHotCheckbox" class="custom-control-label">Hot</label>
                                             </div>
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-2">
                                             <div class="custom-control custom-checkbox">
                                                 @Html.CheckBoxFor(x => x.IsFeature, new { @class = "custom-control-input", @id = "isFeatureCheckbox" })
                                                 <label for="isFeatureCheckbox" class="custom-control-label">Hiện tại</label>
                                             </div>
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-2">
                                             <div class="custom-control custom-checkbox">
                                                 @Html.CheckBoxFor(x => x.IsSale, new { @class = "custom-control-input", @id = "isSaleCheckbox" })
                                                 <label for="isSaleCheckbox" class="custom-control-label">khuyến mãi</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="custom-control custom-checkbox">
+                                                @Html.CheckBoxFor(x => x.IsHome, new { @class = "custom-control-input", @id = "isHomeCheckbox" })
+                                                <label for="isHomeCheckbox" class="custom-control-label">Home</label>
                                             </div>
                                         </div>
                                     </div>
@@ -196,9 +202,10 @@
 
 @section scripts{
     <script>
-        new AutoNumeric('.priceSaleNum', { defaultValue:'0' });
-        new AutoNumeric('.priceNum', { defaultValue:'0' });
-        new AutoNumeric('.quantityNum', { decimalPlaces: 0, defaultValue: '0' });
+        new AutoNumeric('.priceSaleNum', { decimalPlaces: 0, decimalCharacter: ',', digitGroupSeparator: '.', currencySymbol: '', maximumValue: 99999999999.99, unformatOnSubmit: true });
+        new AutoNumeric('.priceNum', { decimalPlaces: 0, decimalCharacter: ',', digitGroupSeparator: '.', currencySymbol: '', maximumValue: 99999999999.99, unformatOnSubmit: true });
+        new AutoNumeric('.quantityNum', { decimalPlaces: 0, decimalCharacter: ',', digitGroupSeparator: '.', currencySymbol: '', maximumValue: 99999999999.99, unformatOnSubmit: true });
+     
         
 
         $(document).ready(function () {

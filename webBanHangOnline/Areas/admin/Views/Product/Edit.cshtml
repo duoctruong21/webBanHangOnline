@@ -1,5 +1,7 @@
 ﻿@model webBangHangOnline.Models.EF.Product
+@using webBangHangOnline.Models.Common;
 @{
+
     ViewBag.Title = "Sản phẩm";
     Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
 }
@@ -61,6 +63,7 @@
                         {
                             @Html.AntiForgeryToken()
                             @Html.HiddenFor(x => x.CreatedDate)
+                            @Html.HiddenFor(x => x.Image)
                             <div class="tab-content">
                                 <div class="active tab-pane" id="activity">
                                     <!--Thông tin chung-->
@@ -107,56 +110,62 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-3">
+                                        <div class="col-2">
                                             <div class="custom-control custom-checkbox">
                                                 @Html.CheckBoxFor(x => x.isActive, new { @class = "custom-control-input", @id = "isActiveCheckbox", @checked = "checked" })
                                                 <label for="isActiveCheckbox" class="custom-control-label">Trạng thái</label>
                                             </div>
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-2">
                                             <div class="custom-control custom-checkbox">
                                                 @Html.CheckBoxFor(x => x.IsHot, new { @class = "custom-control-input", @id = "isHotCheckbox" })
                                                 <label for="isHotCheckbox" class="custom-control-label">Hot</label>
                                             </div>
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-2">
                                             <div class="custom-control custom-checkbox">
                                                 @Html.CheckBoxFor(x => x.IsFeature, new { @class = "custom-control-input", @id = "isFeatureCheckbox" })
                                                 <label for="isFeatureCheckbox" class="custom-control-label">Hiện tại</label>
                                             </div>
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-2">
                                             <div class="custom-control custom-checkbox">
                                                 @Html.CheckBoxFor(x => x.IsSale, new { @class = "custom-control-input", @id = "isSaleCheckbox" })
                                                 <label for="isSaleCheckbox" class="custom-control-label">khuyến mãi</label>
                                             </div>
                                         </div>
+                                        <div class="col-2">
+                                            <div class="custom-control custom-checkbox">
+                                                @Html.CheckBoxFor(x => x.IsHome, new { @class = "custom-control-input", @id = "isHomeCheckbox" })
+                                                <label for="isHomeCheckbox" class="custom-control-label">Home</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <!--<div class="tab-pane" id="timeline">-->
-                                    <!-- Hình ảnh -->
-                                    <!--<div class="row">
-                                        <div class="col-md-12 text-right">
-                                            <input class="btn btn-primary" type="button" value="Tải ảnh" onclick="browseServer()" />
-                                        </div>
-                                        <div class="col-md-12">
-                                            <table class="table table-hover" id="tbProductImg">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="text-center">#</th>
-                                                        <th class="text-center">Ảnh</th>
-                                                        <th class="text-center">Ảnh đại diện</th>
-                                                        <th class="text-center">Thao tác</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="tbDataImgProduct">
-                                                    
-                                                    </tbody>
-                                            </table>
-                                            <input type="hidden" id="tCurrentId" value="0" />
-                                        </div>
-                                    </div>
-                                </div>-->
+                                <!-- Hình ảnh -->
+                                <!--<div class="row">
+                    <div class="col-md-12 text-right">
+                        <input class="btn btn-primary" type="button" value="Tải ảnh" onclick="browseServer()" />
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table table-hover" id="tbProductImg">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Ảnh</th>
+                                    <th class="text-center">Ảnh đại diện</th>
+                                    <th class="text-center">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbDataImgProduct">
+
+                                </tbody>
+                        </table>
+                        <input type="hidden" id="tCurrentId" value="0" />
+                    </div>
+                </div>
+            </div>-->
 
                                 <div class="tab-pane" id="settings">
                                     <!---Seo-->
@@ -197,9 +206,10 @@
 
 @section scripts{
     <script>
-        new AutoNumeric('.priceSaleNum', { defaultValue: '0' });
-        new AutoNumeric('.priceNum', { defaultValue: '0' });
-        new AutoNumeric('.quantityNum', { decimalPlaces: 0, defaultValue: '0' });
+        new AutoNumeric('.priceSaleNum', { decimalPlaces: 0, decimalCharacter: ',', digitGroupSeparator: '.', currencySymbol: '', maximumValue: 99999999999.99, unformatOnSubmit: true });
+        new AutoNumeric('.priceNum', { decimalPlaces: 0, decimalCharacter: ',', digitGroupSeparator: '.', currencySymbol: '', maximumValue: 99999999999.99, unformatOnSubmit: true });
+        new AutoNumeric('.quantityNum', { decimalPlaces: 0, decimalCharacter: ',', digitGroupSeparator: '.', currencySymbol: '', maximumValue: 99999999999.99, unformatOnSubmit: true });
+
 
 
         $(document).ready(function () {

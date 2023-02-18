@@ -97,7 +97,7 @@ namespace webBangHangOnline.Areas.admin.Controllers
         {
             List<Product> product = db.products.ToList();
             var item = db.productImage.Find(id);
-            if(item.IsDefault)
+            /*if(item.IsDefault)
             {
                 foreach(var item2 in product)
                 {
@@ -106,7 +106,7 @@ namespace webBangHangOnline.Areas.admin.Controllers
                         item2.Image = "";
                     }
                 }
-            }
+            }*/
             db.productImage.Remove(item);
             db.SaveChanges();
             return Json(new { success = true});

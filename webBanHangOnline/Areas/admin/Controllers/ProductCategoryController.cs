@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using webBangHangOnline.Models.EF;
 using webBangHangOnline.Models;
+using System.Text.RegularExpressions;
 
 namespace webBangHangOnline.Areas.admin.Controllers
 {
@@ -31,6 +32,7 @@ namespace webBangHangOnline.Areas.admin.Controllers
             {
                 model.CreatedDate = DateTime.Now;
                 model.ModifierDate = DateTime.Now;
+                model.Alias = Regex.Replace(model.Title, "[^\\p{L}\\p{N}]", "").ToLowerInvariant();
                 db.productsCategory.Add(model);
                 db.SaveChanges();
                 return RedirectToAction("index");
@@ -52,7 +54,7 @@ namespace webBangHangOnline.Areas.admin.Controllers
             {
                 db.productsCategory.Attach(model);
                 model.ModifierDate = DateTime.Now;
-                model.Alias = webBangHangOnline.Models.Common.Fillter.LocDau(model.Title);
+                //model.Alias = webBangHangOnline.Models.Common.Fillter.LocDau(model.Title).ToLowerInvariant();
                 /*db.Entry(model).Property(x => x.Title).IsModified = true;
                 db.Entry(model).Property(x => x.Description).IsModified = true;
                 db.Entry(model).Property(x => x.Position).IsModified = true;
@@ -62,6 +64,8 @@ namespace webBangHangOnline.Areas.admin.Controllers
                 db.Entry(model).Property(x => x.Alias).IsModified = true;
                 db.Entry(model).Property(x => x.ModifierBy).IsModified = true;
                 db.Entry(model).Property(x => x.ModifierDate).IsModified = true;*/
+                model.Alias = Regex.Replace(model.Title, "[^\\p{L}\\p{N}]", "").ToLowerInvariant();
+
                 db.Entry(model).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("index");
