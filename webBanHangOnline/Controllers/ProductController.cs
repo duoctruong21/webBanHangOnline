@@ -11,9 +11,37 @@ namespace webBangHangOnline.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Product
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            return View();
+            var items = db.products.ToList();
+            if(id != null)
+            {
+                items = items.Where(x => x.ProductCategoryId == id).ToList();
+            }
+            return View(items);
+        }
+
+        public ActionResult ProductCategory(string alias, int? id)
+        {
+            var items = db.products.ToList();
+            if (id > 0)
+            {
+                items = items.Where(x => x.ProductCategoryId == id).ToList();
+            }
+            var cate = db.productsCategory.Find(id);
+            if(cate != null)
+            {
+                ViewBag.CateName = cate.Title;
+
+            }
+
+            ViewBag.CateId = id;
+            return View(items);
+        }
+
+        public ActionResult Details(string alias,int id) {
+            var items = db.products.Find(id);
+            return View(items);
         }
 
         public ActionResult Partial_ItemsByCateId()
@@ -27,5 +55,6 @@ namespace webBangHangOnline.Controllers
             var items = db.products.Where(x => x.IsSale && x.isActive).Take(15).ToList();
             return PartialView(items);
         }
+        
     }
 }

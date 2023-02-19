@@ -1338,10 +1338,11 @@ section
 .product_image
 {
 	width: 100%;
+	height: 240px;
 }
 .product_image img
 {
-	width: 100%;
+	width: 150px;
 }
 .product_info
 {

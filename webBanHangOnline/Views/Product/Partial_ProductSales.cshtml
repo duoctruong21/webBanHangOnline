@@ -24,6 +24,7 @@
                                 {
                                     strImg = img.Image;
                                 }
+                                decimal sub = item.Price - item.PriceSale;
                                 <div class="owl-item product_slider_item">
                                     <div class="product-item">
                                         <div class="product discount">
@@ -31,32 +32,37 @@
                                                 <img src="@strImg" alt="">
                                             </div>
                                             <div class="favorite favorite_left"></div>
-                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-@sub.ToString("###,###,###.##" + " vnđ")</span></div>
                                             <div class="product_info">
-                                                <h6 class="product_name"><a href="@item.Alias">@item.Title</a></h6>
+                                                <h6 class="product_name"><a href="/chi-tiet-san-pham/@item.Alias-@item.Id">@item.Title</a></h6>
                                                 @if (item.PriceSale == 0)
                                                 {
-                                                    <div class="product_price">@item.Price<span>@item.PriceSale</span></div>
+                                                    <div class="product_price">@item.Price.ToString("###,###,###.##" + " vnđ");</div>
                                                 }
                                                 else
                                                 {
-                                                    <div class="product_price">@item.Price</div>
+                                                    <div class="product_price">
+                                                
+                                                        @item.PriceSale.ToString("###,###,###.##" + " vnđ")
+                                                        <div>
+                                                            <span>@item.Price.ToString("###,###,###.##" + " vnđ");</span>
+                                                        </div>
+                                                    </div>
 
-                                                }                                                
+                                                }
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                }
+                            }
+                        </div>
+                        <!-- Slider Navigation -->
 
-                            <!-- Slider Navigation -->
-
-                            <div class="product_slider_nav_left product_slider_nav d-flex align-items-center justify-content-center flex-column">
-                                <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                            </div>
-                            <div class="product_slider_nav_right product_slider_nav d-flex align-items-center justify-content-center flex-column">
-                                <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                            </div>
+                        <div class="product_slider_nav_left product_slider_nav d-flex align-items-center justify-content-center flex-column">
+                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        </div>
+                        <div class="product_slider_nav_right product_slider_nav d-flex align-items-center justify-content-center flex-column">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
                         </div>
                     </div>
                 </div>

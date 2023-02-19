@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class createdatabase : DbMigration
+    public partial class webBanHang : DbMigration
     {
         public override void Up()
         {
@@ -152,7 +152,7 @@
                         Alias = c.String(maxLength: 250),
                         Description = c.String(),
                         ProductCode = c.String(maxLength: 50),
-                        Detail = c.String(nullable: false),
+                        Detail = c.String(),
                         Image = c.String(maxLength: 250),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         PriceSale = c.Decimal(nullable: false, precision: 18, scale: 2),
@@ -194,6 +194,19 @@
                         ModifierBy = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.tb_productImage",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ProductId = c.Int(nullable: false),
+                        Image = c.String(),
+                        IsDefault = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.tb_product", t => t.ProductId, cascadeDelete: true)
+                .Index(t => t.ProductId);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -293,8 +306,9 @@
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.tb_orderDetail", "ProductId", "dbo.tb_product");
+            DropForeignKey("dbo.tb_productImage", "ProductId", "dbo.tb_product");
             DropForeignKey("dbo.tb_product", "ProductCategoryId", "dbo.tb_productCategory");
+            DropForeignKey("dbo.tb_orderDetail", "ProductId", "dbo.tb_product");
             DropForeignKey("dbo.tb_orderDetail", "OrderId", "dbo.tb_order");
             DropForeignKey("dbo.tb_post", "CategoryId", "dbo.tb_category");
             DropForeignKey("dbo.tb_news", "CategoryId", "dbo.tb_category");
@@ -304,6 +318,7 @@
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.tb_productImage", new[] { "ProductId" });
             DropIndex("dbo.tb_product", new[] { "ProductCategoryId" });
             DropIndex("dbo.tb_orderDetail", new[] { "ProductId" });
             DropIndex("dbo.tb_orderDetail", new[] { "OrderId" });
@@ -316,6 +331,7 @@
             DropTable("dbo.tb_subcribe");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.tb_productImage");
             DropTable("dbo.tb_productCategory");
             DropTable("dbo.tb_product");
             DropTable("dbo.tb_orderDetail");

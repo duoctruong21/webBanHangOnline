@@ -1,0 +1,14 @@
+﻿@model IEnumerable<webBangHangOnline.Models.EF.Product>
+@{
+    ViewBag.Title = "Danh sách sản phẩm";
+}
+
+
+<!-- Banner -->
+@Html.Action("ProductCategory", "Product");
+<!-- New Arrivals -->
+<div class="new_arrivals">
+    <div class="container">
+        @Html.Action("MenuArrivals", "Menu");
+    </div>
+</div>

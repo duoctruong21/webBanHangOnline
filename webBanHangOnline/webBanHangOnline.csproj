@@ -189,28 +189,18 @@
     <Compile Include="Areas\admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\admin\Controllers\ProductImageController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202302151805468_createdatabase.cs" />
-    <Compile Include="Migrations\202302151805468_createdatabase.designer.cs">
-      <DependentUpon>202302151805468_createdatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202302160715596_update_tbproduct_tbproductimage.cs" />
-    <Compile Include="Migrations\202302160715596_update_tbproduct_tbproductimage.designer.cs">
-      <DependentUpon>202302160715596_update_tbproduct_tbproductimage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202302160727427_update_productimage.cs" />
-    <Compile Include="Migrations\202302160727427_update_productimage.designer.cs">
-      <DependentUpon>202302160727427_update_productimage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202302160959450_tbproduct_pricesale.cs" />
-    <Compile Include="Migrations\202302160959450_tbproduct_pricesale.designer.cs">
-      <DependentUpon>202302160959450_tbproduct_pricesale.cs</DependentUpon>
+    <Compile Include="Migrations\202302180859083_webBanHang.cs" />
+    <Compile Include="Migrations\202302180859083_webBanHang.designer.cs">
+      <DependentUpon>202302180859083_webBanHang.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -230,6 +220,7 @@
     <Compile Include="Models\EF\SystemSetting.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -3094,6 +3085,8 @@
     <Content Include="Content\clients\plugins\uplot\uPlot.iife.min.js" />
     <Content Include="Content\clients\plugins\uplot\uPlot.min.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\privite_assets\css\style.css" />
+    <Content Include="Content\privite_assets\js\JsShopping.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -3304,6 +3297,12 @@
     <Content Include="Views\Menu\_MenuArrivals.cshtml" />
     <Content Include="Views\Product\Partial_ItemsByCateId.cshtml" />
     <Content Include="Views\Product\Partial_ProductSales.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Menu\_MenuLeft.cshtml" />
+    <Content Include="Views\Product\ProductCategory.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3338,17 +3337,8 @@
     <Content Include="Scripts\jquery-3.6.3.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202302151805468_createdatabase.resx">
-      <DependentUpon>202302151805468_createdatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202302160715596_update_tbproduct_tbproductimage.resx">
-      <DependentUpon>202302160715596_update_tbproduct_tbproductimage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202302160727427_update_productimage.resx">
-      <DependentUpon>202302160727427_update_productimage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202302160959450_tbproduct_pricesale.resx">
-      <DependentUpon>202302160959450_tbproduct_pricesale.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202302180859083_webBanHang.resx">
+      <DependentUpon>202302180859083_webBanHang.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

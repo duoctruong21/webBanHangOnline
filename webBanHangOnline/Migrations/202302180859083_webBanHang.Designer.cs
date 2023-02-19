@@ -7,13 +7,13 @@ namespace webBangHangOnline.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class update_tbproduct_tbproductimage : IMigrationMetadata
+    public sealed partial class webBanHang : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(update_tbproduct_tbproductimage));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(webBanHang));
         
         string IMigrationMetadata.Id
         {
-            get { return "202302160715596_update_tbproduct_tbproductimage"; }
+            get { return "202302180859083_webBanHang"; }
         }
         
         string IMigrationMetadata.Source
