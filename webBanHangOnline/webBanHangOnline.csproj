@@ -202,10 +202,15 @@
     <Compile Include="Migrations\202302180859083_webBanHang.designer.cs">
       <DependentUpon>202302180859083_webBanHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202302211015145_updatepaymantinorder.cs" />
+    <Compile Include="Migrations\202302211015145_updatepaymantinorder.designer.cs">
+      <DependentUpon>202302211015145_updatepaymantinorder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CommonAbstract.cs" />
     <Compile Include="Models\Common\Fillter.cs" />
+    <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\EF\Adv.cs" />
     <Compile Include="Models\EF\Category.cs" />
     <Compile Include="Models\EF\Contact.cs" />
@@ -220,6 +225,7 @@
     <Compile Include="Models\EF\SystemSetting.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -3306,6 +3312,8 @@
     <Content Include="Views\ShoppingCart\PartialItemCart.cshtml" />
     <Content Include="Views\ShoppingCart\CheckOut.cshtml" />
     <Content Include="Views\ShoppingCart\PartialItemPay.cshtml" />
+    <Content Include="Views\ShoppingCart\PartialCheckOut.cshtml" />
+    <Content Include="Views\ShoppingCart\CheckOutSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3342,6 +3350,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202302180859083_webBanHang.resx">
       <DependentUpon>202302180859083_webBanHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302211015145_updatepaymantinorder.resx">
+      <DependentUpon>202302211015145_updatepaymantinorder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

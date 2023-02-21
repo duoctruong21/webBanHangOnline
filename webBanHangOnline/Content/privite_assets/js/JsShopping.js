@@ -62,6 +62,7 @@
         }
 
     })
+
 })
 
 function showCount() {
@@ -81,7 +82,6 @@ function deleteAll() {
         success: function (rs) {
             if (rs.success) {
                 loadCart();
-                $('.checkout_items').html(rs.count=0);
             }
         }
     })
@@ -95,7 +95,6 @@ function update(id,quantity) {
         success: function (rs) {
             if (rs.success) {
                 loadCart();
-                $('.checkout_items').html(rs.count = 0);
             }
         }
     })

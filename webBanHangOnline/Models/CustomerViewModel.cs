@@ -12,7 +12,7 @@ namespace webBangHangOnline.Models
         public string Phone { get; set; }
         public string Address { get; set; }
         public string Email { get; set; }
-        public int Payment { get; set; }
+        public int TypePayment { get; set; }
 
     }
 }

@@ -61,6 +61,8 @@ namespace webBangHangOnline
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 namespaces: new[] { "webBangHangOnline.Controllers" }
             );
+
         }
+        
     }
 }

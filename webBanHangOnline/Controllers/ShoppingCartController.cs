@@ -4,20 +4,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using webBangHangOnline.Models;
+using webBangHangOnline.Models.EF;
 
 namespace webBangHangOnline.Controllers
 {
     public class ShoppingCartController : Controller
     {
         // GET: ShoppingCart
+        private ApplicationDbContext db = new ApplicationDbContext();
         public int count = 0;
         public ActionResult Index()
         {
             ShoppingCart cart = (ShoppingCart)Session["cart"];
-            if(cart != null)
+            if (cart != null && cart.items.Any())
             {
-                count = cart.items.Count; 
-                return View(cart.items);
+                ViewBag.CheckCart = cart;
             }
             return View();
         }
@@ -25,17 +26,22 @@ namespace webBangHangOnline.Controllers
         public ActionResult CheckOut()
         {
             ShoppingCart cart = (ShoppingCart)Session["cart"];
-            if (cart != null)
+            if (cart != null && cart.items.Any())
             {
                 ViewBag.CheckCart = cart;
             }
             return View();
         }
 
+        public ActionResult CheckOutSuccess()
+        {
+            return View();
+        }
+
         public ActionResult PartialItemPay()
         {
             ShoppingCart cart = (ShoppingCart)Session["cart"];
-            if (cart != null)
+            if (cart != null && cart.items.Any())
             {
                 count = cart.items.Count;
                 return PartialView(cart.items);
@@ -46,7 +52,7 @@ namespace webBangHangOnline.Controllers
         public ActionResult PartialItemCart()
         {
             ShoppingCart cart = (ShoppingCart)Session["cart"];
-            if (cart != null)
+            if (cart != null && cart.items.Any() )
             {
                 count = cart.items.Count;
                 return PartialView(cart.items);
@@ -62,6 +68,49 @@ namespace webBangHangOnline.Controllers
                 return Json(new { count = cart.items.Count },JsonRequestBehavior.AllowGet);
             }
             return Json(new {count=0}, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult PartialCheckOut()
+        {
+            return PartialView();   
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CheckOut(CustomerViewModel req)
+        {
+            var code = new {success = false, code = -1 };
+            if (ModelState.IsValid)
+            {
+                ShoppingCart cart = (ShoppingCart)Session["cart"];
+                if (cart != null)
+                {
+                    Order order = new Order();
+                    order.CustomerName= req.CustomerName;
+                    order.Phone= req.Phone;
+                    order.Address= req.Address;
+                    //order.Email = req.Email;
+                    cart.items.ForEach(x => order.Details.Add(new OrderDetail
+                    {
+                        ProductId = x.ProductId,
+                        Quantity = x.Quantity,
+                        Price = x.Price,
+
+                    }));
+                    order.TotalAmount = cart.items.Sum(x=>(x.Quantity*x.Price));
+                    order.TypePayment = req.TypePayment;
+                    order.CreatedDate = DateTime.Now;
+                    order.ModifierDate = DateTime.Now;
+                    order.CreatedBy = req.Phone;
+                    Random rd = new Random();
+                    order.Code = "DH" + rd.Next(0,9) + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9);
+                    db.orders.Add(order);
+                    db.SaveChanges();
+                    cart.clearCart();
+                    return RedirectToAction("CheckOutSuccess");
+                }
+            }
+            return Json(code);
         }
 
 
