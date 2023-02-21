@@ -3303,6 +3303,9 @@
     <Content Include="Views\Product\ProductCategory.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\PartialItemCart.cshtml" />
+    <Content Include="Views\ShoppingCart\CheckOut.cshtml" />
+    <Content Include="Views\ShoppingCart\PartialItemPay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

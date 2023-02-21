@@ -1,0 +1,36 @@
+﻿@model IEnumerable<webBangHangOnline.Models.ShoppingCartItem>
+
+
+@if (Model != null && Model.Any())
+{
+    var i = 0;
+    decimal tongtien = 0;
+    <h6>Số lượng sản phẩm : @Model.Count()</h6>
+    <table class="table">
+        <tr>
+            <th>STT</th>
+            <th>Tên Sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Thành tiền</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            tongtien += item.Quantity * item.Price;
+            <tr>
+                <td>@(i + 1)</td>
+                <td>@item.ProductName</td>
+                <td>@item.Quantity</td>
+                <td>@item.Price.ToString("###,###,###.##")</td>
+                <td>@Math.Abs(item.Price * item.Quantity).ToString("###,###,###.##")</td>
+            </tr>
+            i++;
+        }
+    <tr>
+        <td colspan="3"></td>
+        <td>Tổng tiền</td>
+        <td>@tongtien.ToString("###,###,###.##")</td>
+    </tr>
+    </table>
+}
+
