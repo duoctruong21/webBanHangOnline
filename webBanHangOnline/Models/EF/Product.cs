@@ -38,6 +38,7 @@ namespace webBangHangOnline.Models.EF
         public bool IsSale { get; set; }
         public bool IsFeature { get; set; }
         public bool IsHot { get; set; }
+        public int ViewCount { get; set; }
         public int ProductCategoryId { get; set; }
         [StringLength(250)]
         public string SeoTitle { get; set; }

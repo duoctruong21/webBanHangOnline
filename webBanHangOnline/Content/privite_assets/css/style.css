@@ -17,3 +17,7 @@
 .error {
     color:#ff0000;
 }
+
+.display_none {
+    display:none;
+}

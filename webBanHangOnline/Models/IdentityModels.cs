@@ -29,6 +29,7 @@ namespace webBangHangOnline.Models
         }
 
         public DbSet<Category> categories { get; set; }
+        public DbSet<Statistical> statisticals { get; set; }
         public DbSet<Adv> advs { get; set; }
         public DbSet<Contact> contacts { get; set; }
         public DbSet<News> news { get; set; }
