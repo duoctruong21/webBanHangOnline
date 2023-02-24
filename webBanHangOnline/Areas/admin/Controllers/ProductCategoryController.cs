@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace webBangHangOnline.Areas.admin.Controllers
 {
+    [Authorize(Roles = "admin,emlopee")]
     public class ProductCategoryController : Controller
     {
         // GET: admin/ProductCategory

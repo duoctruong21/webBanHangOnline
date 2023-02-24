@@ -9,6 +9,7 @@ using webBangHangOnline.Models.EF;
 
 namespace webBangHangOnline.Areas.admin.Controllers
 {
+    [Authorize]
     public class NewsController : Controller
     {
         // GET: admin/News

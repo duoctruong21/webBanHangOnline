@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>webBangHangOnline</RootNamespace>
-    <AssemblyName>webBangHangOnline</AssemblyName>
+    <RootNamespace>webBanHangOnline</RootNamespace>
+    <AssemblyName>webBanHangOnline</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -184,6 +184,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\admin\adminAreaRegistration.cs" />
+    <Compile Include="Areas\admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\admin\Controllers\NewsController.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Areas\admin\Controllers\ProductCategoryController.cs" />
     <Compile Include="Areas\admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\admin\Controllers\ProductImageController.cs" />
+    <Compile Include="Areas\admin\Controllers\RoleController.cs" />
     <Compile Include="Common\Common.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -203,29 +205,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202302180859083_webBanHang.cs" />
-    <Compile Include="Migrations\202302180859083_webBanHang.designer.cs">
-      <DependentUpon>202302180859083_webBanHang.cs</DependentUpon>
+    <Compile Include="Migrations\202302241242363_createDB.cs" />
+    <Compile Include="Migrations\202302241242363_createDB.designer.cs">
+      <DependentUpon>202302241242363_createDB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202302211015145_updatepaymantinorder.cs" />
-    <Compile Include="Migrations\202302211015145_updatepaymantinorder.designer.cs">
-      <DependentUpon>202302211015145_updatepaymantinorder.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202302220717184_createTBstatistical.cs" />
-    <Compile Include="Migrations\202302220717184_createTBstatistical.designer.cs">
-      <DependentUpon>202302220717184_createTBstatistical.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202302220730542_updateTBstatistical.cs" />
-    <Compile Include="Migrations\202302220730542_updateTBstatistical.designer.cs">
-      <DependentUpon>202302220730542_updateTBstatistical.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202302221009308_updatenamethoigian.cs" />
-    <Compile Include="Migrations\202302221009308_updatenamethoigian.designer.cs">
-      <DependentUpon>202302221009308_updatenamethoigian.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202302230235170_addEmailTborders.cs" />
-    <Compile Include="Migrations\202302230235170_addEmailTborders.designer.cs">
-      <DependentUpon>202302230235170_addEmailTborders.cs</DependentUpon>
+    <Compile Include="Migrations\202302241548523_updateDB.cs" />
+    <Compile Include="Migrations\202302241548523_updateDB.designer.cs">
+      <DependentUpon>202302241548523_updateDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -3279,6 +3265,13 @@
     <Content Include="Areas\admin\Views\Orders\Index.cshtml" />
     <Content Include="Areas\admin\Views\Orders\View.cshtml" />
     <Content Include="Areas\admin\Views\Orders\PartialOrderDetail.cshtml" />
+    <Content Include="Areas\admin\Views\Role\Index.cshtml" />
+    <Content Include="Areas\admin\Views\Role\Create.cshtml" />
+    <Content Include="Areas\admin\Views\Role\Edit.cshtml" />
+    <Content Include="Areas\admin\Views\Account\Index.cshtml" />
+    <Content Include="Areas\admin\Views\Account\Register.cshtml" />
+    <Content Include="Areas\admin\Views\Account\Login.cshtml" />
+    <Content Include="Areas\admin\Views\Shared\_LayoutLogin.cshtml" />
     <None Include="Scripts\jquery-3.6.3.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.3.js" />
     <Content Include="Scripts\jquery-3.6.3.min.js" />
@@ -3378,23 +3371,11 @@
     <Content Include="Scripts\jquery-3.6.3.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202302180859083_webBanHang.resx">
-      <DependentUpon>202302180859083_webBanHang.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202302241242363_createDB.resx">
+      <DependentUpon>202302241242363_createDB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202302211015145_updatepaymantinorder.resx">
-      <DependentUpon>202302211015145_updatepaymantinorder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202302220717184_createTBstatistical.resx">
-      <DependentUpon>202302220717184_createTBstatistical.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202302220730542_updateTBstatistical.resx">
-      <DependentUpon>202302220730542_updateTBstatistical.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202302221009308_updatenamethoigian.resx">
-      <DependentUpon>202302221009308_updatenamethoigian.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202302230235170_addEmailTborders.resx">
-      <DependentUpon>202302230235170_addEmailTborders.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202302241548523_updateDB.resx">
+      <DependentUpon>202302241548523_updateDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

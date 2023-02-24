@@ -8,6 +8,7 @@ using webBangHangOnline.Models.EF;
 
 namespace webBangHangOnline.Areas.admin.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();

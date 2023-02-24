@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class webBanHang : DbMigration
+    public partial class createDB : DbMigration
     {
         public override void Up()
         {
@@ -118,8 +118,10 @@
                         CustomerName = c.String(nullable: false),
                         Phone = c.String(nullable: false),
                         Address = c.String(nullable: false),
+                        Email = c.String(),
                         TotalAmount = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Quantity = c.Int(nullable: false),
+                        TypePayment = c.Int(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.String(),
                         ModifierDate = c.DateTime(nullable: false),
@@ -161,6 +163,7 @@
                         IsSale = c.Boolean(nullable: false),
                         IsFeature = c.Boolean(nullable: false),
                         IsHot = c.Boolean(nullable: false),
+                        ViewCount = c.Int(nullable: false),
                         ProductCategoryId = c.Int(nullable: false),
                         SeoTitle = c.String(maxLength: 250),
                         SeoDescription = c.String(maxLength: 500),
@@ -230,6 +233,16 @@
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId)
                 .Index(t => t.RoleId);
+            
+            CreateTable(
+                "dbo.tb_statistical",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ThoiGian = c.DateTime(nullable: false),
+                        AccessCount = c.Long(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.tb_subcribe",
@@ -329,6 +342,7 @@
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.tb_systemSetting");
             DropTable("dbo.tb_subcribe");
+            DropTable("dbo.tb_statistical");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.tb_productImage");

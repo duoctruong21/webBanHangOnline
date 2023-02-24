@@ -7,13 +7,13 @@ namespace webBangHangOnline.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class updatepaymantinorder : IMigrationMetadata
+    public sealed partial class updateDB : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(updatepaymantinorder));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updateDB));
         
         string IMigrationMetadata.Id
         {
-            get { return "202302211015145_updatepaymantinorder"; }
+            get { return "202302241548523_updateDB"; }
         }
         
         string IMigrationMetadata.Source

@@ -28,7 +28,7 @@ namespace webBangHangOnline
         }
         protected void Session_Start(object sender, EventArgs e)
         {
-            Session.Timeout = 1;
+            Session.Timeout = 150;
             Application.Lock();
             Application["visitors_online"] = Convert.ToInt32(Application["visitors_online"]) +1;
             Application.UnLock();

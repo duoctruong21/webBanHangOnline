@@ -32,11 +32,10 @@ namespace webBangHangOnline.Controllers
             if(cate != null)
             {
                 ViewBag.CateName = cate.Title;
-
             }
 
             ViewBag.CateId = id;
-            return View(items);
+            return PartialView(items);
         }
 
         public ActionResult Details(string alias,int id) {
