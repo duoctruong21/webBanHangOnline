@@ -27,6 +27,7 @@ namespace webBangHangOnline.Areas.admin
                 new { controller = "Home" ,action = "Index", id = UrlParameter.Optional },
                 namespaces: new[] { "webBangHangOnline.Areas.admin.Controllers" }
             );
+
         }
     }
 }

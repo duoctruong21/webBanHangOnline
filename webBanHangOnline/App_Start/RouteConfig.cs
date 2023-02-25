@@ -56,6 +56,13 @@ namespace webBangHangOnline
             );
 
             routes.MapRoute(
+                name: "News",
+                url: "tin-tuc",
+                defaults: new { controller = "News", action = "Index", alias = UrlParameter.Optional },
+                namespaces: new[] { "webBangHangOnline.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },

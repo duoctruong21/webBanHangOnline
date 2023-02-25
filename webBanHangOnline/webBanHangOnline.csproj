@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>webBanHangOnline</RootNamespace>
-    <AssemblyName>webBanHangOnline</AssemblyName>
+    <RootNamespace>webBangHangOnline</RootNamespace>
+    <AssemblyName>webBangHangOnline</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -194,12 +194,15 @@
     <Compile Include="Areas\admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\admin\Controllers\ProductImageController.cs" />
     <Compile Include="Areas\admin\Controllers\RoleController.cs" />
+    <Compile Include="Areas\admin\Controllers\SettingSystemController.cs" />
     <Compile Include="Common\Common.cs" />
+    <Compile Include="Common\SettingHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
@@ -235,6 +238,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
+    <Compile Include="Models\SettingSystemViewModel.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\StatisticalViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -3272,12 +3276,16 @@
     <Content Include="Areas\admin\Views\Account\Register.cshtml" />
     <Content Include="Areas\admin\Views\Account\Login.cshtml" />
     <Content Include="Areas\admin\Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Areas\admin\Views\SettingSystem\Index.cshtml" />
+    <Content Include="Areas\admin\Views\SettingSystem\PartialSetting.cshtml" />
     <None Include="Scripts\jquery-3.6.3.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.3.js" />
     <Content Include="Scripts\jquery-3.6.3.min.js" />
     <Content Include="Scripts\jquery-3.6.3.slim.js" />
     <Content Include="Scripts\jquery-3.6.3.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -3337,6 +3345,7 @@
     <Content Include="Views\ShoppingCart\PartialCheckOut.cshtml" />
     <Content Include="Views\ShoppingCart\CheckOutSuccess.cshtml" />
     <Content Include="Views\Home\ReFresh.cshtml" />
+    <Content Include="Views\News\PartialNewsHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
