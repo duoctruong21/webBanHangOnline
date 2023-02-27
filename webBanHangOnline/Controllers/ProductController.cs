@@ -57,6 +57,12 @@ namespace webBangHangOnline.Controllers
             return PartialView(items);
         }
 
+        public ActionResult Partial_ItemsByCateId_Home()
+        {
+            var items = db.products.Where(x => x.IsHome && x.isActive).Take(15).ToList();
+            return PartialView(items);
+        }
+
         public ActionResult Partial_ProductSales()
         {
             var items = db.products.Where(x => x.IsSale && x.isActive).Take(15).ToList();

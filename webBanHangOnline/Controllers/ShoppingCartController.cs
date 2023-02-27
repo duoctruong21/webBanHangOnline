@@ -61,6 +61,17 @@ namespace webBangHangOnline.Controllers
             return PartialView();
         }
 
+        public ActionResult PartialItemCartHome()
+        {
+            ShoppingCart cart = (ShoppingCart)Session["cart"];
+            if (cart != null && cart.items.Any())
+            {
+                count = cart.items.Count;
+                return PartialView(cart.items);
+            }
+            return PartialView();
+        }
+
         public ActionResult ShowCount()
         {
             ShoppingCart cart = (ShoppingCart)Session["cart"];

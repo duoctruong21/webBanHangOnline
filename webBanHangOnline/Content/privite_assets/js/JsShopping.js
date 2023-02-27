@@ -120,3 +120,16 @@ function allowOnlyNumbers(event) {
         event.preventDefault();
     }
 }
+
+function loadDataInTable(id) {
+    var data = {
+        img: $('#getImginItem').val(),
+        title: $('#getTitleinItem').val(),
+        price: $('#getPriceinItem').val()
+    }
+
+    $.ajax({
+        type: 'post',
+        url: '/gio-hang/'
+    })
+}

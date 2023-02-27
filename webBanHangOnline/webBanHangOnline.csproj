@@ -3355,6 +3355,7 @@
     <Content Include="Views\ShoppingCart\CheckOutSuccess.cshtml" />
     <Content Include="Views\Home\ReFresh.cshtml" />
     <Content Include="Views\News\PartialNewsHome.cshtml" />
+    <Content Include="Views\ShoppingCart\PartialItemCartHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3414,9 +3415,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50471</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:2108/</IISUrl>
-          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>https://localhost:2108/</IISAppRootUrl>
+          <IISUrl>https://localhost:44326</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

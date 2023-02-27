@@ -115,9 +115,10 @@
                                             <i class="fa fa-bell"></i>
                                             <span id="checkout_items" class="badge badge-warning navbar-badge checkout_items">15</span>
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
-                                            @Html.Action("PartialItemCart", "ShoppingCart")
-                                        </div>                                        
+                                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right " style="left: inherit; right: 0px; overflow-y:scroll; min-height:340px; max-height:600px">
+                                            @Html.Action("PartialItemCartHome", "ShoppingCart")
+                                            <div><a href="/gio-hang" class="btn btn-sm btn-success w-100">Thanh toán</a></div>
+                                        </div>
                                     </li>
                                 </ul>
                                 <div class="hamburger_container">
@@ -253,5 +254,6 @@
     <script src="~/Content/assets/js/single_custom.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Content/privite_assets/js/JsShopping.js"></script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>
