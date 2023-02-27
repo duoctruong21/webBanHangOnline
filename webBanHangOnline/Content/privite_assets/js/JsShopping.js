@@ -109,3 +109,14 @@ function loadCart() {
         }
     })
 }
+
+function allowOnlyNumbers(event) {
+    // Get the ASCII value of the key that was pressed
+    const key = event.keyCode || event.which;
+
+    // If the key is not a number (0-9) and not a special key (e.g. Backspace)
+    if (key < 48 || key > 57) {
+        // Prevent the event from being executed
+        event.preventDefault();
+    }
+}
