@@ -30,6 +30,9 @@
     <link rel="stylesheet" href="~/Content/clients/dist/css/adminlte.min.css">
     <!---PagedList css-->
     <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <!--AutoNumeric-->
+    <link href="~/Content/privite_assets/css/style.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autonumeric/4.6.0/autoNumeric.min.js" integrity="sha512-6j+LxzZ7EO1Kr7H5yfJ8VYCVZufCBMNFhSMMzb2JRhlwQ/Ri7Zv8VfJ7YI//cg9H5uXT2lQpb14YMvqUAdGlcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -213,6 +216,7 @@
     <script src="~/Content/clients/plugins/bs-stepper/js/bs-stepper.min.js"></script>
     <!-- dropzonejs -->
     <script src="~/Content/clients/plugins/dropzone/min/dropzone.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <!-- AdminLTE App -->
     <script src="~/Content/clients/dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
@@ -349,10 +353,11 @@
         }
         document.querySelector("#actions .cancel").onclick = function () {
             myDropzone.removeAllFiles(true)
-        }
-          // DropzoneJS Demo Code End</script>
-    <script src="~/Content/ckeditor/ckeditor.js"></script>
+                                  // DropzoneJS Demo Code End</script>
+    }
     <script src="~/Content/ckfinder/ckfinder.js"></script>
+    <script src="~/Content/ckeditor/ckeditor.js"></script>
+    <script src="~/Content/privite_assets/js/JsShopping.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -1,0 +1,26 @@
+﻿@model webBangHangOnline.Models.StatisticalModel
+
+@if (Model != null)
+{
+    <div class="statistical">
+        <table class="table">
+            <tr>
+                <td>Hôm nay</td>
+                <td>@Model.homnay</td>
+            </tr>
+            <tr>
+                <td>Hôm qua</td>
+                <td>@Model.homqua</td>
+            </tr>
+            <tr>
+                <td>Tuần này</td>
+                <td>@Model.tuannay</td>
+            </tr>
+            <tr>
+                <td>Số người online</td>
+                <td>@ViewBag.visitors_online</td>
+            </tr>
+            
+        </table>
+    </div>
+}

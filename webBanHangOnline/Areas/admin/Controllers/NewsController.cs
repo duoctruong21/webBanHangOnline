@@ -9,6 +9,7 @@ using webBangHangOnline.Models.EF;
 
 namespace webBangHangOnline.Areas.admin.Controllers
 {
+    [Authorize]
     public class NewsController : Controller
     {
         // GET: admin/News
@@ -16,7 +17,7 @@ namespace webBangHangOnline.Areas.admin.Controllers
         public ActionResult Index(string searchText,int? page)
         {
 
-            var pageSize = 2;
+            var pageSize = 10;
             if(page == null)
             {
                 page = 1;
@@ -45,8 +46,19 @@ namespace webBangHangOnline.Areas.admin.Controllers
             {
                 model.CreatedDate = DateTime.Now;
                 model.ModifierDate = DateTime.Now;
-                model.CategoryId = 12;
+                List<Category> category = db.categories.ToList();
                 model.Alias = webBangHangOnline.Models.Common.Fillter.LocDau(model.Title);
+                foreach(var item in category)
+                {
+                    if(webBangHangOnline.Models.Common.Fillter.BoDau(item.Title).ToLowerInvariant() == webBangHangOnline.Models.Common.Fillter.BoDau("Bài viết").ToLowerInvariant())
+                    {
+                        model.CategoryId = item.Id;
+                    }
+                }
+                if(model.SeoTitle == null || model.SeoTitle == "")
+                {
+                    model.SeoTitle = model.Title;
+                }
                 db.news.Add(model);
                 db.SaveChanges();
                 return RedirectToAction("Index");

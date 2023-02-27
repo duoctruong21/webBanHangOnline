@@ -1,0 +1,23 @@
+﻿.display__webkit__col-2 {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    line-height: 2.2rem;
+    font-size: 1rem;
+    -webkit-box-orient: vertical;
+}
+
+.add_to_cart_buttons {
+    width: 160px !important;
+    margin-left: 19px;
+    font-size: 12px !important;
+}
+
+.error {
+    color:#ff0000;
+}
+
+.display_none {
+    display:none;
+}

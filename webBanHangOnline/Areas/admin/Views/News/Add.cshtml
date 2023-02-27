@@ -13,7 +13,7 @@
             <a href="/admin" class="nav-link">Trang chủ</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/category" class="nav-link">@ViewBag.Title </a>
+            <a href="/admin/news" class="nav-link">@ViewBag.Title </a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="#" class="nav-link">Thêm mới </a>
@@ -51,7 +51,6 @@
                 @using (Html.BeginForm("Add", "News", FormMethod.Post, new { }))
                 {
                     @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(false)
                 <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Tiêu đề @ViewBag.Title</label>
@@ -71,15 +70,11 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Mô tả </label>
-                        @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
+                        @Html.TextAreaFor(x => x.Description, new { @class = "form-control", @placeholder = "Mô tả" })
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Chi tiết</label>
                         @Html.TextAreaFor(x => x.Detail, new { @class = "form-control", @id = "txtDetail" })
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Trạng thái</label>
-                        @Html.CheckBoxFor(x => x.isActive, new { @class = "form-control", @id = "txtDetail" })
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Seo title</label>
@@ -92,6 +87,10 @@
                     <div class="form-group">
                         <label for="exampleInputPassword1">Seo Keywords</label>
                         @Html.TextAreaFor(x => x.SeoKeywords, new { @class = "form-control" })
+                    </div>
+                    <div class="custom-control custom-checkbox mb-4">
+                        @Html.CheckBoxFor(x => x.isActive, new { @class = "custom-control-input", @id = "isActiveCheckbox", @checked = "checked" })
+                        <label for="isActiveCheckbox" class="custom-control-label">Trạng thái</label>
                     </div>
                 </div>
                     <div class="form-group">
@@ -117,7 +116,7 @@
     <script>
         $(document).ready(function () {
             CKEDITOR.replace('txtDetail', {
-                customerConfig: '/content/ckeditor/config.js',
+                customerConfig: '/Content/ckeditor/config.js',
                 extranAllowedContent: 'span',
             });
         });

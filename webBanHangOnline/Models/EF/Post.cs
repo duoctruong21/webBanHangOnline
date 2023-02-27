@@ -14,7 +14,7 @@ namespace webBangHangOnline.Models.EF
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Bạn không được để trống")]
         [StringLength(150)]
         public string Title { get; set; }
         public string Alias { get; set; }
@@ -22,19 +22,16 @@ namespace webBangHangOnline.Models.EF
         [AllowHtml]
         public string Detail { get; set; }
         [StringLength(250)]
+
         public string Image { get; set; }
         [StringLength(250)]
         public string SeoTitle { get; set; }
         [StringLength(500)]
-
         public string SeoDescription { get; set; }
         [StringLength(250)]
-
         public string SeoKeywords { get; set; }
         public int CategoryId { get; set; }
         public bool isActive { get; set; }
-
-
         public virtual Category Category { get; set; }
     }
 }

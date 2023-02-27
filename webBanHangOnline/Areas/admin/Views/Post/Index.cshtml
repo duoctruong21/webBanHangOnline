@@ -2,9 +2,17 @@
 @model PagedList.PagedList<webBangHangOnline.Models.EF.Post>
 @using PagedList.Mvc
 @using PagedList
+
 @{
     ViewBag.Title = "Bài viết";
     Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+    //hiển thị trang đầu trang cuối cảu pagedlist
+    var options = new PagedListRenderOptions
+    {
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        MaximumPageNumbersToDisplay = 5
+    };
 }
 
 @section naviheader{
@@ -51,7 +59,20 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-hover">
+            <div class="row">
+                <div class="col-3">
+                    @using (Html.BeginForm("Index", "Post", FormMethod.Get, new { }))
+                    {
+                        <div class="input-group input-group-sm">
+                            @Html.TextBox("searchText", "", new { @class = "form-control form-control-lg" })
+                            <span class="input-group-append">
+                                <button type="submit" class="btn btn-info btn-flat">Go!</button>
+                            </span>
+                        </div>
+                    }
+                </div>
+            </div>
+            <table class="table table-hover reLoadTable">
                 <thead>
                     <tr>
                         <th><input type="checkbox" id="SelectAll" /></th>
@@ -67,7 +88,7 @@
                 <tbody>
                     @if (Model != null && Model.Any())
                     {
-                        var i = 1;
+                        var i = (ViewBag.Page - 1) * ViewBag.PageSize + 1;
                         foreach (var item in Model)
                         {
                             var strCheck = item.isActive ? "<i class='fa fa-check text-success'></i>" : "<i class='fa fa-ban text-danger'></i>";
@@ -76,7 +97,7 @@
                                 <td class="index">@i</td>
                                 <td>@item.Title</td>
                                 <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
-                                <td><img src="@item.Image" /></td>
+                                <td><img width="50" src="@item.Image" /></td>
                                 <td class="text-center">
                                     <a href="#" data-id="@item.Id" class="btnActive">@Html.Raw(strCheck)</a>
                                 </td>
@@ -99,7 +120,12 @@
                     }
                 </tbody>
             </table>
-            @Html.PagedListPager(Model, page => Url.Action("Index", new {page}))
+            <div class="row">
+                <div class="col-6"></div>
+                <div class="col-6" style="text-align:right;">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), options)
+                </div>
+            </div>
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
@@ -114,6 +140,7 @@
 
 @section scripts{
     <script>
+        var index = (@ViewBag.Page - 1) * @ViewBag.PageSize + 1;
         $(document).ready(function () {
             //xóa tất cả
             $('body').on('click', '#BtnDeleteAll', function (e) {
@@ -169,7 +196,6 @@
             $('body').on('click', '.btnDelete', function () {
                 var id = $(this).data("id");
                 var conf = confirm("Bạn có muốn xóa bản ghi này không?");
-                /*Ajax*/
                 if (conf === true) {
                     $.ajax({
                         url: '/admin/post/delete',
@@ -178,9 +204,11 @@
                         success: function (rs) {
                             if (rs.success) {
                                 $('#trow_' + id).remove();
+                                var itemNumberStart = (@ViewBag.Page - 1) * @ViewBag.PageSize + 1;
                                 $('.index').each(function (index) {
-                                    $(this).text(index + 1);
+                                    $(this).text(index += itemNumberStart);
                                 })
+                                //$('.reLoadTable').load('@Url.Action("Index", "post") .reLoadTable' );
                             }
                         }
                     })

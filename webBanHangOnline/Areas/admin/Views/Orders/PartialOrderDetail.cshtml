@@ -1,0 +1,17 @@
+﻿@model IEnumerable<webBangHangOnline.Models.EF.OrderDetail>
+
+@if (Model != null && Model.Any())
+{
+    foreach (var item in Model)
+    {
+        var i = 1;
+        <tr>
+            <td>@i</td>
+            <td>@item.Product.Title</td>
+            <td>@item.Quantity</td>
+            <td>@item.Price.ToString("###,###,###.##")</td>
+            <td>@((item.Price*item.Quantity).ToString("###,###,###.##"))</td>
+        </tr>
+        i++;
+    }
+}

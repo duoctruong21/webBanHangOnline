@@ -6,8 +6,13 @@ using System.Web.Mvc;
 
 namespace webBangHangOnline.Areas.admin.Controllers
 {
+    [Authorize]
+    [RoutePrefix("admin")]
     public class HomeController : Controller
     {
+        [Route("")]
+        [Route("admin")]
+        [Route("home")]
         // GET: admin/Home
         public ActionResult Index()
         {

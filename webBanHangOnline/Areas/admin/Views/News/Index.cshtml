@@ -5,6 +5,12 @@
 @{
     ViewBag.Title = "Tin tức";
     Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+    var options = new PagedListRenderOptions
+    {
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        MaximumPageNumbersToDisplay = 5
+    };
 }
 
 @section naviheader{
@@ -89,7 +95,7 @@
                                 <td class="index">@i</td>
                                 <td>@item.Title</td>
                                 <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
-                                <td><img src="@item.Image" /></td>
+                                <td><img width="50" src="@item.Image" /></td>
                                 <td class="text-center">
                                     <a href="#" data-id="@item.Id" class="btnActive">@Html.Raw(strCheck)</a>
                                 </td>
@@ -115,7 +121,7 @@
             <div class="row">
                 <div class="col-6"></div>
                 <div class="col-6" style="text-align: right;">
-                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),options)
                 </div>
             </div>
         </div>
@@ -132,6 +138,7 @@
 
 @section scripts{
     <script>
+        
         $(document).ready(function () {
             //xóa tất cả
             $('body').on('click', '#BtnDeleteAll', function (e) {
@@ -197,7 +204,7 @@
                             if (rs.success) {
                                 $('#trow_' + id).remove();
                                 $('.index').each(function (index) {
-                                    $(this).text(index + 1);
+                                    $(this).text(index+1);
                                 })
                             }
                         }
