@@ -8,18 +8,48 @@
         if (tQuantity != '') {
             quantity = parseInt(tQuantity);
         }
-
+        debugger
+        var title = $('#getTitleinItem_'+id).text()
+        var price = $('#getPriceinItem_'+id).text()
+        var priceSale = $('#getPriceinItemSale_' + id).text()
+        var img = $('#getImginItem_' + id).attr('src')
+        if (priceSale == "") {
+            price = price;
+        } else {
+            price = priceSale;
+        }
         $.ajax({
             url: '/shoppingcart/addtocart',
             type: 'POST',
-            data: { id: id, quantity: quantity },
+            data: {
+                id:id,
+                title: title,
+                price: price,
+                quantity: quantity,
+                img :img
+            },
             success: function (rs) {
                 if (rs.success) {
+                    $('.loadTable').append(`
+                        <tr id="trow_${id}" class="text-center">
+                            <td>${quantity}</td>
+                            <td><img width="50" src="${img}" /></td>
+                            <td><a href="/chi-tiet-san-pham/@item.Alias-${id}">${title}</a></td>
+                            <td>${price}</td>
+                            <td><input class="form-control" type="number" id="Quantity_${id}" value="${quantity}" /></td>
+                            <td>
+                                <a href="#" data-id="@item.ProductId" class="btn btn-sm btn-danger btnDelete">Xóa</a>
+                                <a href="#" data-id="@item.ProductId" class="btn btn-sm btn-success btnUpdate">Cập nhật</a>
+                            </td>
+                        </tr>
+
+                     `);
                     $('.checkout_items').html(rs.count); 
                     alert(rs.msg);
                 }
             }
         })
+        
     })
 
     $('body').on('click', '.btnUpdate', function (e) {
@@ -119,17 +149,4 @@ function allowOnlyNumbers(event) {
         // Prevent the event from being executed
         event.preventDefault();
     }
-}
-
-function loadDataInTable(id) {
-    var data = {
-        img: $('#getImginItem').val(),
-        title: $('#getTitleinItem').val(),
-        price: $('#getPriceinItem').val()
-    }
-
-    $.ajax({
-        type: 'post',
-        url: '/gio-hang/'
-    })
 }
