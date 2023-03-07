@@ -71,6 +71,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -200,6 +202,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IActionResult.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -215,6 +218,10 @@
     <Compile Include="Migrations\202302241548523_updateDB.cs" />
     <Compile Include="Migrations\202302241548523_updateDB.designer.cs">
       <DependentUpon>202302241548523_updateDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303070725437_updateSubcribe.cs" />
+    <Compile Include="Migrations\202303070725437_updateSubcribe.designer.cs">
+      <DependentUpon>202303070725437_updateSubcribe.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -3283,6 +3290,7 @@
     <Content Include="Areas\admin\Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Areas\admin\Views\SettingSystem\Index.cshtml" />
     <Content Include="Areas\admin\Views\SettingSystem\PartialSetting.cshtml" />
+    <Content Include="Areas\admin\Views\Account\ShowUserAccount.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -3356,6 +3364,8 @@
     <Content Include="Views\Home\ReFresh.cshtml" />
     <Content Include="Views\News\PartialNewsHome.cshtml" />
     <Content Include="Views\ShoppingCart\PartialItemCartHome.cshtml" />
+    <Content Include="Views\Home\Partial_Subcribe.cshtml" />
+    <Content Include="Views\Home\partialAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3396,6 +3406,12 @@
     <EmbeddedResource Include="Migrations\202302241548523_updateDB.resx">
       <DependentUpon>202302241548523_updateDB.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303070725437_updateSubcribe.resx">
+      <DependentUpon>202303070725437_updateSubcribe.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

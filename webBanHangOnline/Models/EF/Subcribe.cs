@@ -13,6 +13,8 @@ namespace webBangHangOnline.Models.EF
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        [EmailAddress]
+        [Required(ErrorMessage ="Không được để trống")]
         public string Email { get; set;}
         public DateTime CreatedDate { get; set; }
     }

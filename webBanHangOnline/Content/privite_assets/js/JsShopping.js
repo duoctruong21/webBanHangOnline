@@ -63,7 +63,7 @@
         
     })
 
-    $('body').on('click', '.btnDelete', function (e) {
+    $('body').on('click', '.btnDeleteCart', function (e) {
         e.preventDefault();
         var id = $(this).data('id');
         var conf = confirm('Bạn có muốn xóa sản phẩm ra khỏi giỏ hàng không?');

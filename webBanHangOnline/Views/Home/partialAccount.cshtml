@@ -1,0 +1,33 @@
+﻿@model IEnumerable<dynamic>
+
+<li class="account">
+    @if (!Request.IsAuthenticated)
+    {
+        <a href="#">
+            My Account
+            <i class="fa fa-angle-down"></i>
+        </a>
+        <ul class="account_selection">
+            <li><a href="/account/login"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
+            <li><a href="/account/register"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+        </ul>
+    }
+    else
+    {
+        <a href="#">
+            Welcome:@ViewBag.hovaten
+
+            <i class="fa fa-angle-down"></i>
+        </a>
+
+
+        <ul class="account_selection">
+            @if (ViewBag.role == "admin")
+            {
+                <li><a href="/admin"><i class="fa fa-user-plus" aria-hidden="true"></i>Quản lý</a></li>
+
+            }
+            <li><a href="javascript:document.getElementById('logOffForm').submit()"><i class="fa fa-user-plus" aria-hidden="true"></i>Log out</a></li>
+        </ul>
+    }
+</li>
