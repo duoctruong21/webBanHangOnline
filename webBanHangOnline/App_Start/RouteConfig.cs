@@ -28,11 +28,19 @@ namespace webBangHangOnline
             );
 
             routes.MapRoute(
+              name: "CheckOutSuccess",
+              url: "thanh-cong",
+              defaults: new { controller = "ShoppingCart", action = "CheckOutSuccess", alias = UrlParameter.Optional },
+              namespaces: new[] { "webBangHangOnline.Controllers" }
+            );
+
+            routes.MapRoute(
               name: "CheckOut",
               url: "thanh-toan",
               defaults: new { controller = "ShoppingCart", action = "CheckOut", alias = UrlParameter.Optional },
               namespaces: new[] { "webBangHangOnline.Controllers" }
             );
+
 
             routes.MapRoute(
                name: "CategoryProduct",

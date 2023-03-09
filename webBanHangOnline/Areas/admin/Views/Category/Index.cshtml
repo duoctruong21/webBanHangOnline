@@ -43,7 +43,7 @@
             <h3 class="card-title">Danh sách danh mục</h3>
 
             <div class="card-tools">
-                <a href="/admin/category/add" class="btn btn-primary">Thêm mới</a>
+                <a href="/admin/category/add" class="btn btn-primary display_none">Thêm mới</a>
             </div>
         </div>
         <div class="card-body">
@@ -72,7 +72,7 @@
                                 <td><a href="#" data-id="@item.Id" class="btnActive"> @Html.Raw(strCheck)</a></td>
                                 <td>
                                     <a href="/admin/category/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
-                                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete swalDefaultSuccess">Xóa</a>
+                                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete swalDefaultSuccess display_none">Xóa</a>
                                 </td>
                             </tr>
                             i++;

@@ -22,7 +22,7 @@
 
 
         <ul class="account_selection">
-            @if (ViewBag.role == "admin")
+            @if (ViewBag.role.ToLower() == "admin" || ViewBag.role.ToLower() =="employee")
             {
                 <li><a href="/admin"><i class="fa fa-user-plus" aria-hidden="true"></i>Quản lý</a></li>
 

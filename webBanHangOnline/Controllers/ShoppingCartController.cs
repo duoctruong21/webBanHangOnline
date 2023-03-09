@@ -157,8 +157,8 @@ namespace webBangHangOnline.Controllers
                     webBangHangOnline.Common.Common.SendMail("shopOnline", "Đơn hàng #" + order.Code, contentAdmin.ToString(), ConfigurationManager.AppSettings["EmailAdmin"]);
 
                     cart.clearCart();
-                    return RedirectToAction("CheckOutSuccess");
                 }
+                    return RedirectToAction("CheckOutSuccess");
             }
             return Json(code);
         }

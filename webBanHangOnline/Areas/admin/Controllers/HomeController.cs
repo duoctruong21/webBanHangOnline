@@ -15,33 +15,48 @@ namespace webBangHangOnline.Areas.admin.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()        
         {
-            if (Session["email"] != null)
+            if (User.Identity.Name != "")
             {
-                string email = (string)Session["email"];
-
-                var item = db.Users.FirstOrDefault(x => x.Email.Contains(email));
-                Session["fullName"] = item.Fullname;
-                /*var item = db.Users.ToList();
-                foreach (var user in item)
+                var items = db.Users.SingleOrDefault(x => x.Email.Contains(User.Identity.Name));
+                var roleName = from user in items.Roles
+                               join role in db.Roles.ToList() on user.RoleId equals role.Id
+                               select new
+                               {
+                                   role = role.Name,
+                                   hovaten = items.Fullname,
+                                   email = items.Email
+                                   
+                               };
+                foreach (var item in roleName)
                 {
-                    if (user.Email == email)
-                    {
-                        return View(user);
-                    }
-                }*/
-                foreach(var user in item.Roles) {
-                    foreach(var model in db.Roles)
-                    {
-                        if(user.RoleId.Equals(model.Id))
-                        {
-                            ViewBag.Role = model.Name;
-                        }
-                    }
+                    ViewBag.role = item.role;
+                    ViewBag.hovaten = item.hovaten;
                 }
-                
-                return View(item);
+                return View(roleName);
             }
             return View();
+        }
+        public ActionResult Partial_home() {
+            if (User.Identity.Name != "")
+            {
+                var items = db.Users.SingleOrDefault(x => x.Email.Contains(User.Identity.Name));
+                var roleName = from user in items.Roles
+                               join role in db.Roles.ToList() on user.RoleId equals role.Id
+                               select new
+                               {
+                                   role = role.Name,
+                                   hovaten = items.Fullname,
+                                   email = items.Email
+
+                               };
+                foreach (var item in roleName)
+                {
+                    ViewBag.role = item.role;
+                    ViewBag.hovaten = item.hovaten;
+                }
+                return PartialView(roleName);
+            }
+            return PartialView();
         }
     }
 }

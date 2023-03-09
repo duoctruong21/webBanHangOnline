@@ -34,7 +34,7 @@ namespace webBangHangOnline.Areas.admin.Controllers
         }
         public ActionResult Add()
         {
-            ViewBag.ProductCategory = new SelectList(db.productsCategory,"Id", "Title");
+            ViewBag.ProductCategory = new SelectList(db.productsCategory.Where(x=>x.isDeleted == false),"Id", "Title");
             return View();
         }
         [HttpPost]
@@ -75,18 +75,18 @@ namespace webBangHangOnline.Areas.admin.Controllers
                 {
                     model.SeoTitle = model.Title;
                 }
-                model.Alias = webBangHangOnline.Models.Common.Fillter.LocDau(model.Title);
+                model.Alias = webBangHangOnline.Models.Common.Fillter.LocDau(model.Title).ToLower();
                 db.products.Add(model);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProductCategory = new SelectList(db.productsCategory, "Id", "Title");
+            ViewBag.ProductCategory = new SelectList(db.productsCategory.Where(x=>x.isDeleted == false), "Id", "Title");
             return View(model);
         }
         public ActionResult Edit(int id)
         {
             var item = db.products.Find(id);
-            ViewBag.ProductCategory = new SelectList(db.productsCategory, "Id", "Title");
+            ViewBag.ProductCategory = new SelectList(db.productsCategory.Where(x => x.isDeleted == false), "Id", "Title");
 
             return View(item);
         }
@@ -103,7 +103,7 @@ namespace webBangHangOnline.Areas.admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProductCategory = new SelectList(db.productsCategory, "Id", "Title");
+            ViewBag.ProductCategory = new SelectList(db.productsCategory.Where(x => x.isDeleted == false), "Id", "Title");
             return View(model);
         }
 

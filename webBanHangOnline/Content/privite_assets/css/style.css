@@ -35,3 +35,9 @@
 .margin-bottom_0{
     margin-bottom: 0 !important;
 }
+
+.disabled-link {
+    pointer-events: none;
+    color: grey;
+    text-decoration: none;
+}

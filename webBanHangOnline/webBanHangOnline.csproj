@@ -197,6 +197,7 @@
     <Compile Include="Areas\admin\Controllers\ProductImageController.cs" />
     <Compile Include="Areas\admin\Controllers\RoleController.cs" />
     <Compile Include="Areas\admin\Controllers\SettingSystemController.cs" />
+    <Compile Include="Areas\admin\Controllers\StatisticalController.cs" />
     <Compile Include="Common\Common.cs" />
     <Compile Include="Common\SettingHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -223,6 +224,10 @@
     <Compile Include="Migrations\202303070725437_updateSubcribe.cs" />
     <Compile Include="Migrations\202303070725437_updateSubcribe.designer.cs">
       <DependentUpon>202303070725437_updateSubcribe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303090357219_updateTbProductCategory.cs" />
+    <Compile Include="Migrations\202303090357219_updateTbProductCategory.designer.cs">
+      <DependentUpon>202303090357219_updateTbProductCategory.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -3292,6 +3297,9 @@
     <Content Include="Areas\admin\Views\SettingSystem\Index.cshtml" />
     <Content Include="Areas\admin\Views\SettingSystem\PartialSetting.cshtml" />
     <Content Include="Areas\admin\Views\Account\ShowUserAccount.cshtml" />
+    <Content Include="Areas\admin\Views\Home\Partial_home.cshtml" />
+    <Content Include="Areas\admin\Views\Statistical\PartialView.cshtml" />
+    <Content Include="Areas\admin\Views\Statistical\Index.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -3413,6 +3421,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303070725437_updateSubcribe.resx">
       <DependentUpon>202303070725437_updateSubcribe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303090357219_updateTbProductCategory.resx">
+      <DependentUpon>202303090357219_updateTbProductCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

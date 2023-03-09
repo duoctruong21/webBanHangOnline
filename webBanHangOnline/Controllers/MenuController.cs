@@ -18,7 +18,7 @@ namespace webBangHangOnline.Controllers
 
         public ActionResult MenuTop()
         {
-            var items = db.categories.OrderBy(x=>x.Position).ToList();
+            var items = db.categories.Where(x=>x.isActive).OrderBy(x=>x.Position).ToList();
             return PartialView("_MenuTop",items);
         }
 
@@ -38,7 +38,7 @@ namespace webBangHangOnline.Controllers
 
         public ActionResult MenuArrivals()
         {
-            var items = db.productsCategory.ToList();
+            var items = db.productsCategory.Where(x=>x.isActive && x.isDeleted == false).Take(4).ToList();
             return PartialView("_MenuArrivals", items);
         }
 
