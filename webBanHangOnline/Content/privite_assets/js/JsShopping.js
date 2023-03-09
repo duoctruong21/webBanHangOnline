@@ -8,18 +8,49 @@
         if (tQuantity != '') {
             quantity = parseInt(tQuantity);
         }
-
+        var title = $('#getTitleinItem_'+id).text()
+        var price = $('#getPriceinItem_'+id).text()
+        var priceSale = $('#getPriceinItemSale_' + id).text()
+        var img = $('#getImginItem_' + id).attr('src')
+        if (priceSale == "") {
+            price = price;
+        } else {
+            price = priceSale;
+        }
         $.ajax({
             url: '/shoppingcart/addtocart',
             type: 'POST',
-            data: { id: id, quantity: quantity },
+            data: {
+                id:id,
+                title: title,
+                price: price,
+                quantity: quantity,
+                img :img
+            },
             success: function (rs) {
                 if (rs.success) {
+                    $('.loadTable').append(`
+                        <tr id="trow_${id}" class="text-center">
+                            <td>${quantity}</td>
+                            <td><img width="50" src="${img}" /></td>
+                            <td><a href="/chi-tiet-san-pham/@item.Alias-${id}">${title}</a></td>
+                            <td>${price}</td>
+                            <td><input class="form-control" type="number" id="Quantity_${id}" value="${quantity}" /></td>
+                            <td>
+                                <a href="#" data-id="${id}" class="btn btn-sm btn-danger btnDeleteCart">Xóa</a>
+                                <a href="#" data-id="${id}" class="btn btn-sm btn-success btnUpdate">Cập nhật</a>
+                            </td>
+                        </tr>
+
+                     `);
                     $('.checkout_items').html(rs.count); 
+                    $('.display_none').removeClass('display_none').addClass('giohangco');
+                    $('.giohangtrong').removeClass('.giohangtrong').addClass('display_none');
                     alert(rs.msg);
                 }
             }
         })
+        
     })
 
     $('body').on('click', '.btnUpdate', function (e) {
@@ -33,7 +64,7 @@
         
     })
 
-    $('body').on('click', '.btnDelete', function (e) {
+    $('body').on('click', '.btnDeleteCart', function (e) {
         e.preventDefault();
         var id = $(this).data('id');
         var conf = confirm('Bạn có muốn xóa sản phẩm ra khỏi giỏ hàng không?');
@@ -46,6 +77,10 @@
                     if (rs.success) {
                         $('.checkout_items').html(rs.count);
                         $('#trow_' + id).remove();
+                        if (rs.count == 0) {
+                            $('.display_none').removeClass('display_none').addClass('giohangtrong');
+                            $('.giohangco').removeClass('.giohangco').addClass('display_none');
+                        }
                         loadCart();
                     }
                 }
@@ -119,17 +154,4 @@ function allowOnlyNumbers(event) {
         // Prevent the event from being executed
         event.preventDefault();
     }
-}
-
-function loadDataInTable(id) {
-    var data = {
-        img: $('#getImginItem').val(),
-        title: $('#getTitleinItem').val(),
-        price: $('#getPriceinItem').val()
-    }
-
-    $.ajax({
-        type: 'post',
-        url: '/gio-hang/'
-    })
 }

@@ -12,7 +12,7 @@ namespace webBangHangOnline.Common
 
         public static string GetValue(string key)
         {
-            var items = db.systemSetting.SingleOrDefault(x=>x.SettingKey == key);
+            var items = db.systemSetting.SingleOrDefault(x=>x.SettingKey.Equals(key));
             if(items!= null)
             {
                 return items.SettingValue;

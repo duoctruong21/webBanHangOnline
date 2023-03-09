@@ -146,6 +146,7 @@ namespace webBangHangOnline.Areas.admin.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    Session["Email"] = model.Email;
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -172,6 +173,34 @@ namespace webBangHangOnline.Areas.admin.Controllers
                 return Redirect(returnUrl);
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult ShowUserAccount(string id)
+        {
+            var item = db.Users.Find(id);
+            foreach (var user in item.Roles)
+            {
+                foreach (var model in db.Roles)
+                {
+                    if (user.RoleId.Equals(model.Id))
+                    {
+                        ViewBag.Role = model.Name;
+                    }
+                }
+            }
+            return View(item);
+        }
+        [HttpPost]
+        public ActionResult Delete(string id)
+        {
+            if(id!=null)
+            {
+                var item = db.Users.Find(id);
+                db.Users.Remove(item);
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+            return Json(new {success = false });
         }
     }
 }

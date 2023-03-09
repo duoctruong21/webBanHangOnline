@@ -18,6 +18,7 @@
     <!-- Font Awesome -->
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
 
     <link href="~/Content/privite_assets/css/style.css" rel="stylesheet" />
 
@@ -73,16 +74,7 @@
                                             <li><a href="#">Spanish</a></li>
                                         </ul>
                                     </li>
-                                    <li class="account">
-                                        <a href="#">
-                                            My Account
-                                            <i class="fa fa-angle-down"></i>
-                                        </a>
-                                        <ul class="account_selection">
-                                            <li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-                                            <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
-                                        </ul>
-                                    </li>
+                                    @Html.Action("partialAccount","Home")
                                 </ul>
                             </div>
                         </div>
@@ -104,7 +96,7 @@
                                 <ul class="navbar_user">
                                     <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
                                     <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
-                                    <li class="checkout">
+                                    <li class="checkout" style="display: none">
                                         <a href="/gio-hang">
                                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                             <span id="checkout_items" class="checkout_items"></span>
@@ -112,12 +104,12 @@
                                     </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
-                                            <i class="fa fa-bell"></i>
+                                            <i class="fa fa-shopping-cart"></i>
                                             <span id="checkout_items" class="badge badge-warning navbar-badge checkout_items">15</span>
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right " style="left: inherit; right: 0px; overflow-y:scroll; min-height:340px; max-height:600px">
+                                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right " style="left: inherit; right: 0px; overflow-y:scroll;  max-height:600px">
                                             @Html.Action("PartialItemCartHome", "ShoppingCart")
-                                            <div><a href="/gio-hang" class="btn btn-sm btn-success w-100">Thanh toán</a></div>
+                                            
                                         </div>
                                     </li>
                                 </ul>
@@ -184,26 +176,7 @@
 
         <!-- Newsletter -->
 
-        <div class="newsletter">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="newsletter_text d-flex flex-column justify-content-center align-items-lg-start align-items-md-center text-center">
-                            <h4>Newsletter</h4>
-                            <p>Subscribe to our newsletter and get 20% off your first purchase</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <form action="post">
-                            <div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
-                                <input id="newsletter_email" type="email" placeholder="Your email" required="required" data-error="Valid email is required.">
-                                <button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">subscribe</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @Html.Action("Partial_Subcribe", "Home");
 
         <!-- Footer -->
 
@@ -253,7 +226,17 @@
     <script src="~/Content/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <script src="~/Content/assets/js/single_custom.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Content/privite_assets/js/JsShopping.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
+@if (Request.IsAuthenticated)
+{
+    <div style="display:none">
+        @using (Html.BeginForm("Logoff", "Account", FormMethod.Post, new { @id = "logOffForm" }))
+        {
+            @Html.AntiForgeryToken()
+        }
+    </div>
+}

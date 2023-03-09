@@ -71,82 +71,84 @@
                     }
                 </div>
             </div>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th><input type="checkbox" id="SelectAll" /></th>
-                        <th>STT</th>
-                        <th>Hình ảnh</th>
-                        <th>Tên @ViewBag.title</th>
-                        <th>SKU</th>
-                        <th>Tên danh mục sản phẩm</th>
-                        <th>Ngày tạo</th>
-                        <th>Số lượng</th>
-                        <th>Giá</th>
-                        <th width="100px">Trạng thái</th>
-                        <th width="50px">Home</th>
-                        <th width="50px">Sale</th>
-                        <th>Mô tả</th>
-                        <th width="150px">Quản lý</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model != null && Model.Any())
-                    {
-                        var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
-                        foreach (var item in Model)
-                        {
-                            var strCheck = item.isActive ? "<i class='fa fa-check text-success'></i>" : "<i class='fa fa-ban text-danger'></i>";
-                            var strHome = item.IsHome ? "<i class='fa fa-check text-success'></i>" : "<i class='fa fa-ban text-danger'></i>";
-                            var strSale = item.IsSale ? "<i class='fa fa-check text-success'></i>" : "<i class='fa fa-ban text-danger'></i>";
-                            string prices = item.Price.ToString("###,###,###.##");
-                            <tr id="trow_@item.Id">
-                                <td><input type="checkbox" class="cbkItem" value="@item.Id" /></td>
-                                <td class="index">@i</td>
-                                <td>
-                                    @if (item.Image == "" || item.Image == null)
-                                    {
-                                        <img class="imgProduct" data-id="@item.Id" width="50" height="50" src="@item.Image" />
-                                    }
-                                    else
-                                    {
-                                        <img class="imgProduct" data-id="@item.Id" width="50" src="@item.Image" />
-                                    }
-                                </td>
-                                <td>@item.Title</td>
-                                <td>@item.ProductCode</td>
-                                <td>@item.ProductCategory.Title</td>
-                                <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
-                                <td>@item.Quantity</td>
-                                <td>@prices</td>
-                                <td class="text-center">
-                                    <a href="#" data-id="@item.Id" class="btnActive">@Html.Raw(strCheck)</a>
-                                </td>
-                                <td class="text-center">
-                                    <a href="#" data-id="@item.Id" class="btnHome">@Html.Raw(strHome)</a>
-                                </td>
-                                <td class="text-center">
-                                    <a href="#" data-id="@item.Id" class="btnSale">@Html.Raw(strSale)</a>
-                                </td>
-                                <td class="display__webkit__col-2" data-toggle="tooltip" title="@item.Description">@item.Description</td>
-
-                                <td>
-                                    <a href="/admin/product/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
-                                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
-                                </td>
-                            </tr>
-                            i++;
-                        }
-
-                    }
-                    else
-                    {
+            <div class="row" style="overflow-x:scroll;">
+                <table class="table table-hover w-100" >
+                    <thead>
                         <tr>
-                            <td colspan="4">Không có bản ghi nào!</td>
+                            <th><input type="checkbox" id="SelectAll" /></th>
+                            <th>STT</th>
+                            <th>Hình ảnh</th>
+                            <th>Tên @ViewBag.title</th>
+                            <th>SKU</th>
+                            <th>Tên danh mục sản phẩm</th>
+                            <th>Ngày tạo</th>
+                            <th>Số lượng</th>
+                            <th>Giá</th>
+                            <th width="100px">Trạng thái</th>
+                            <th width="50px">Home</th>
+                            <th width="50px">Sale</th>
+                            <th>Mô tả</th>
+                            <th width="150px">Quản lý</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
+                            foreach (var item in Model)
+                            {
+                                var strCheck = item.isActive ? "<i class='fa fa-check text-success'></i>" : "<i class='fa fa-ban text-danger'></i>";
+                                var strHome = item.IsHome ? "<i class='fa fa-check text-success'></i>" : "<i class='fa fa-ban text-danger'></i>";
+                                var strSale = item.IsSale ? "<i class='fa fa-check text-success'></i>" : "<i class='fa fa-ban text-danger'></i>";
+                                string prices = item.Price.ToString("###,###,###.##");
+                                <tr id="trow_@item.Id">
+                                    <td><input type="checkbox" class="cbkItem" value="@item.Id" /></td>
+                                    <td class="index">@i</td>
+                                    <td>
+                                        @if (item.Image == "" || item.Image == null)
+                                        {
+                                            <img class="imgProduct" data-id="@item.Id" width="50" height="50" src="@item.Image" />
+                                        }
+                                        else
+                                        {
+                                            <img class="imgProduct" data-id="@item.Id" width="50" src="@item.Image" />
+                                        }
+                                    </td>
+                                    <td>@item.Title</td>
+                                    <td>@item.ProductCode</td>
+                                    <td>@item.ProductCategory.Title</td>
+                                    <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
+                                    <td>@item.Quantity</td>
+                                    <td>@prices</td>
+                                    <td class="text-center">
+                                        <a href="#" data-id="@item.Id" class="btnActive">@Html.Raw(strCheck)</a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="#" data-id="@item.Id" class="btnHome">@Html.Raw(strHome)</a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="#" data-id="@item.Id" class="btnSale">@Html.Raw(strSale)</a>
+                                    </td>
+                                    <td class="display__webkit__col-2" data-toggle="tooltip" title="@item.Description">@item.Description</td>
+
+                                    <td>
+                                        <a href="/admin/product/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
+                                        <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
+                                    </td>
+                                </tr>
+                                i++;
+                            }
+
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="4">Không có bản ghi nào!</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
             <div class="row">
                 <div class="col-6"></div>
                 <div class="col-6" style="text-align: right;">
