@@ -152,24 +152,23 @@
                                         <div class="product-item @item.ProductCategory.Alias">
                                             <div class="product discount product_filter">
                                                 <div class="product_image text-center">
-                                                    <img src="@strImg" alt="@item.Title">
+                                                    <img id="getImginItem_@item.Id" src="@strImg" alt="@item.Title">
                                                 </div>
                                                 <div class="favorite favorite_left"></div>
                                                 <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center" style="width:70%"><span>-@sub.ToString("###,###,###.##" + " vnđ")</span></div>
                                                 <div class="product_info">
-                                                    <h6 class="product_name"><a href="/chi-tiet-san-pham/@item.Alias-@item.Id">@item.Title</a></h6>
+                                                    <h6 class="product_name"><a id="getTitleinItem_@item.Id" href="/chi-tiet-san-pham/@item.Alias-@item.Id">@item.Title</a></h6>
                                                     @if (item.PriceSale == 0)
                                                     {
-                                                        <div class="product_price">@item.Price.ToString("###,###,###.##" + " vnđ");</div>
-                                                        
+                                                        <div class="product_price"><p style="color:#fe4c50" id="getPriceinItem_@item.Id">@item.Price.ToString("###,###,###.##" + " vnđ")</p></div>
                                                     }
                                                     else
                                                     {
                                                         <div class="product_price">
-                                                            @item.PriceSale.ToString("###,###,###.##" + " vnđ")
+                                                            <p style="color:#fe4c50" id="getPriceinItemSale_@item.Id">@item.PriceSale.ToString("###,###,###.##" + " vnđ")</p>
                                                             <div>
-                                                                <span>@item.Price.ToString("###,###,###.##" + " vnđ");</span>
-                                                                <div style="display:none" class="in_product_price" >@item.Price</div>
+                                                                <span>@item.Price.ToString("###,###,###.##" + " vnđ")</span>
+                                                                <div style="display:none" class="in_product_price">@item.Price</div>
                                                             </div>
                                                         </div>
                                                     }

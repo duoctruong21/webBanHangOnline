@@ -63,6 +63,27 @@ namespace webBangHangOnline
             );
 
             routes.MapRoute(
+                name: "DetailNews",
+                url: "tin-tuc/{alias}-{id}",
+                defaults: new { controller = "News", action = "Details", alias = UrlParameter.Optional },
+                namespaces: new[] { "webBangHangOnline.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Post",
+                url: "bai-viet",
+                defaults: new { controller = "Post", action = "Index", alias = UrlParameter.Optional },
+                namespaces: new[] { "webBangHangOnline.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "PostDetails",
+                url: "bai-viet/{alias}-{id}",
+                defaults: new { controller = "Post", action = "Details", alias = UrlParameter.Optional },
+                namespaces: new[] { "webBangHangOnline.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },

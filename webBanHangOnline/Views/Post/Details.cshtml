@@ -1,0 +1,44 @@
+﻿@model webBangHangOnline.Models.EF.Post
+
+@{ 
+    ViewBag.Title = "Bài viết";
+}
+
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/single_styles.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/single_responsive.css">
+<link href="~/Content/assets/styles/main_styles.css" rel="stylesheet" />
+@if (Model != null)
+{
+    <div class="container single_product_container">
+        <div class="breadcrumbs d-flex flex-row align-items-center margin-bottom_0">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="active"><a href="/tin-tuc"><i class="fa fa-angle-right" aria-hidden="true"></i>@ViewBag.Title</a></li>
+                <li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>@ViewBag.TitleDetails</a></li>
+            </ul>
+        </div>
+        <div class="row bottom_20">
+            <div class="col-md-3">
+                <div class="img-box">
+                    <a href="#" title="@Model.Title">
+                        <img width="100" src="@Model.Image" alt="@Model.Title" />
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="content-box">
+                    <h3><a href="@Model.Alias-@Model.Id">@Model.Title</a></h3>
+                    <div class="description-box">
+                        @Model.Description
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                @Html.Raw(Model.Detail)
+            </div>
+        </div>
+
+    </div>
+
+}
+

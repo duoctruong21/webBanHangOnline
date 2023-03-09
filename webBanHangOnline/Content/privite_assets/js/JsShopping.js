@@ -8,7 +8,6 @@
         if (tQuantity != '') {
             quantity = parseInt(tQuantity);
         }
-        debugger
         var title = $('#getTitleinItem_'+id).text()
         var price = $('#getPriceinItem_'+id).text()
         var priceSale = $('#getPriceinItemSale_' + id).text()
@@ -38,13 +37,15 @@
                             <td>${price}</td>
                             <td><input class="form-control" type="number" id="Quantity_${id}" value="${quantity}" /></td>
                             <td>
-                                <a href="#" data-id="@item.ProductId" class="btn btn-sm btn-danger btnDelete">Xóa</a>
-                                <a href="#" data-id="@item.ProductId" class="btn btn-sm btn-success btnUpdate">Cập nhật</a>
+                                <a href="#" data-id="${id}" class="btn btn-sm btn-danger btnDeleteCart">Xóa</a>
+                                <a href="#" data-id="${id}" class="btn btn-sm btn-success btnUpdate">Cập nhật</a>
                             </td>
                         </tr>
 
                      `);
                     $('.checkout_items').html(rs.count); 
+                    $('.display_none').removeClass('display_none').addClass('giohangco');
+                    $('.giohangtrong').removeClass('.giohangtrong').addClass('display_none');
                     alert(rs.msg);
                 }
             }
@@ -76,6 +77,10 @@
                     if (rs.success) {
                         $('.checkout_items').html(rs.count);
                         $('#trow_' + id).remove();
+                        if (rs.count == 0) {
+                            $('.display_none').removeClass('display_none').addClass('giohangtrong');
+                            $('.giohangco').removeClass('.giohangco').addClass('display_none');
+                        }
                         loadCart();
                     }
                 }

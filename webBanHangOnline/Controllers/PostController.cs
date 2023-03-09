@@ -9,36 +9,29 @@ using webBangHangOnline.Models.EF;
 
 namespace webBangHangOnline.Controllers
 {
-    public class NewsController : Controller
+    public class PostController : Controller
     {
+        // GET: Post
         private ApplicationDbContext db = new ApplicationDbContext();
-        // GET: News
         public ActionResult Index(int? page)
         {
-            IEnumerable<News> items = db.news.ToList();
+            IEnumerable<Post> items = db.posts.ToList();
             var pageSize = 10;
             if(page == null)
             {
                 page = 1;
             }
             var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
-            items = items.ToPagedList(pageIndex,pageSize);
+            items = items.ToPagedList(pageIndex, pageSize);
             ViewBag.PageSize = pageSize;
-            ViewBag.Page = page;
+            ViewBag.page = page;
             return View(items);
         }
 
-        public ActionResult Details(int id)
-        {
-            var item = db.news.Find(id);
-            @ViewBag.Title = item.Title;
+        public ActionResult Details(int id) { 
+            var item = db.posts.Find(id);
+            ViewBag.TitleDetails = item.Title;
             return View(item);
-        }
-
-        public ActionResult PartialNewsHome()
-        {
-            var item = db.news.Take(3).ToList();
-            return PartialView(item);
         }
     }
 }

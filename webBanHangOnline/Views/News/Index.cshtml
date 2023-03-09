@@ -1,0 +1,52 @@
+﻿@model PagedList.IPagedList<webBangHangOnline.Models.EF.News>
+@using PagedList.Mvc
+@using PagedList
+@{
+    ViewBag.Title = "New";
+}
+
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/single_styles.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/single_responsive.css">
+<link href="~/Content/assets/styles/main_styles.css" rel="stylesheet" />
+@if (Model != null)
+{
+    var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
+    <div class="container single_product_container">
+        <div class="breadcrumbs d-flex flex-row align-items-center margin-bottom_0">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="active"><a href="/Tin-tuc"><i class="fa fa-angle-right" aria-hidden="true"></i>Tin tức</a></li>
+            </ul>
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="row bottom_20">
+                <div class="col-md-3">
+                    <div class="img-box">
+                        <a href="tin-tuc/@item.Alias-@item.Id" title="@item.Title">
+                            <img width="200" src="@item.Image" alt="@item.Title" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="content-box">
+                        <h3><a href="tin-tuc/@item.Alias-@item.Id">@item.Title</a></h3>
+                        <div class="description-box">
+                            @item.Description
+                        </div>
+                    </div>
+                </div>
+            </div>
+            i++;
+        }
+
+    </div>
+    <div class="row">
+        <div class="col-6"></div>
+        <div class="col-6" style="text-align: right;">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        </div>
+    </div>
+
+}
+

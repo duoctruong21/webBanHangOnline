@@ -39,7 +39,7 @@
                                     {
                                         if (item.IsDefault)
                                         {
-                                            <li class="active"><img src="@item.Image" alt="" data-image="@item.Image"></li>
+                                            <li class="active"><img id="getImginItem_@Model.Id" src="@item.Image" alt="" data-image="@item.Image"></li>
                                             tempImg = item.Image;
                                         }
                                         else
@@ -63,15 +63,15 @@
         <div class="col-lg-5">
             <div class="product_details">
                 <div class="product_details_title">
-                    <h2>@Model.Title</h2>
+                    <h2 id="getTitleinItem_@Model.Id">@Model.Title</h2>
                     <p>@Model.Description</p>
                     <p>Lượt xem: @Model.ViewCount</p>
                 </div>
                 <div class="free_delivery d-flex flex-row align-items-center justify-content-center">
                     <span class="ti-truck"></span><span>free delivery</span>
                 </div>
-                <div class="original_price">@Model.Price.ToString("###,###,###.##" + "VNĐ")</div>
-                <div class="product_price">@Model.PriceSale.ToString("###,###,###.##" + "VNĐ")</div>
+                <div id="getPriceinItem_@Model.Id" class="original_price">@Model.Price.ToString("###,###,###.##" + "VNĐ")</div>
+                <div  id="getPriceinItemSale_@Model.Id" class="product_price">@Model.PriceSale.ToString("###,###,###.##" + "VNĐ")</div>
                 <ul class="star_rating">
                     <li><i class="fa fa-star" aria-hidden="true"></i></li>
                     <li><i class="fa fa-star" aria-hidden="true"></i></li>
