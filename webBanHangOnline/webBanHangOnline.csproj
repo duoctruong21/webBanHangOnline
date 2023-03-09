@@ -229,6 +229,10 @@
     <Compile Include="Migrations\202303090357219_updateTbProductCategory.designer.cs">
       <DependentUpon>202303090357219_updateTbProductCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202303090913308_updatedbfixbug.cs" />
+    <Compile Include="Migrations\202303090913308_updatedbfixbug.designer.cs">
+      <DependentUpon>202303090913308_updatedbfixbug.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CommonAbstract.cs" />
@@ -3424,6 +3428,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303090357219_updateTbProductCategory.resx">
       <DependentUpon>202303090357219_updateTbProductCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303090913308_updatedbfixbug.resx">
+      <DependentUpon>202303090913308_updatedbfixbug.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
