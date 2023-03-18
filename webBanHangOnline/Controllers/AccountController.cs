@@ -140,6 +140,7 @@ namespace webBangHangOnline.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+
             return View();
         }
 
@@ -148,16 +149,25 @@ namespace webBangHangOnline.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterAccountViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                model.Role = "Customer";
+                var user = new ApplicationUser
+                {
+                    UserName = model.UserName,
+                    Email = model.UserName,
+                    Fullname = model.FullName,
+                    Phone = model.Phone,
+                    Address = model.Address,
+                    CreatedDate = DateTime.Now
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    UserManager.AddToRole(user.Id, model.Role);
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

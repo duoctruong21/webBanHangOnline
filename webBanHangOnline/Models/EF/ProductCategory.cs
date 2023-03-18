@@ -33,6 +33,8 @@ namespace webBangHangOnline.Models.EF
         public string SeoKeywords { get; set; }
         public bool isActive { get; set; }
 
+        public bool isDeleted { get; set; }
+
         public ICollection<Product> Products { get; set; }
     }
 }

@@ -18,12 +18,12 @@ namespace webBangHangOnline.Controllers
 
         public ActionResult MenuTop()
         {
-            var items = db.categories.OrderBy(x=>x.Position).ToList();
+            var items = db.categories.Where(x=>x.isActive).OrderBy(x=>x.Position).ToList();
             return PartialView("_MenuTop",items);
         }
 
         public ActionResult MenuProductCategory() {
-            var items = db.productsCategory.ToList();
+            var items = db.productsCategory.Where(x => x.isActive && x.isDeleted == false).ToList();
             return PartialView("_MenuProductCategory", items);
         }
         public ActionResult MenuLeft(int? id)
@@ -32,13 +32,13 @@ namespace webBangHangOnline.Controllers
             {
                 ViewBag.CateId = id;
             }
-            var items = db.productsCategory.ToList();
+            var items = db.productsCategory.Where(x => x.isActive && x.isDeleted == false).ToList();
             return PartialView("_MenuLeft", items);
         }
 
         public ActionResult MenuArrivals()
         {
-            var items = db.productsCategory.ToList();
+            var items = db.productsCategory.Where(x=>x.isActive && x.isDeleted == false).Take(4).ToList();
             return PartialView("_MenuArrivals", items);
         }
 

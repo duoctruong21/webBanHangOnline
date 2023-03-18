@@ -125,7 +125,7 @@ namespace webBangHangOnline.Areas.admin.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         //

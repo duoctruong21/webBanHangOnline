@@ -17,7 +17,7 @@ namespace webBangHangOnline.Areas.admin.Controllers
         // GET: admin/Category
         public ActionResult Index()
         {
-            var items = db.productsCategory;
+            var items = db.productsCategory.Where(x=>x.isDeleted == false);
             return View(items);
         }
 
@@ -33,7 +33,7 @@ namespace webBangHangOnline.Areas.admin.Controllers
             {
                 model.CreatedDate = DateTime.Now;
                 model.ModifierDate = DateTime.Now;
-                model.Alias = Regex.Replace(model.Title, "[^\\p{L}\\p{N}]", "").ToLowerInvariant();
+                model.Alias = webBangHangOnline.Models.Common.Fillter.LocDau(model.Title).ToLowerInvariant();
                 db.productsCategory.Add(model);
                 db.SaveChanges();
                 return RedirectToAction("index");
@@ -80,7 +80,7 @@ namespace webBangHangOnline.Areas.admin.Controllers
             if (item != null)
             {
                 //var DeleteItem = db.categories.Attach(item);
-                db.productsCategory.Remove(item);
+                item.isDeleted = true;
                 db.SaveChanges();
                 return Json(new { success = true });
             }

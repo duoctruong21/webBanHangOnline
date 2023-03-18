@@ -1,4 +1,4 @@
-﻿@model webBangHangOnline.Models.ApplicationUser
+﻿@model dynamic
 @{
     ViewBag.Title = "Trang chủ admin";
     Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
@@ -11,11 +11,9 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Admin</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Admin</a></li>
                         @*<li class="breadcrumb-item active">Admin</li>*@
                     </ol>
                 </div>
@@ -32,23 +30,20 @@
                     <div class="col-md-4">
                         <div class="card card-primary card-outline">
                             <div class="card-body box-profile">
-                                <div class="text-center">
-                                    <img class="profile-user-img img-fluid img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
-                                </div>
 
-                                <h3 class="profile-username text-center">@Model.Fullname</h3>
+                                <h3 class="profile-username text-center">@ViewBag.hovaten</h3>
 
-                                <p class="text-muted text-center">@ViewBag.Role</p>
+                                <p class="text-muted text-center">@ViewBag.role</p>
 
                                 <ul class="list-group list-group-unbordered mb-3">
                                     <li class="list-group-item">
-                                        <b>Số điện thoại:</b> <a class="float-right">@Model.Phone</a>
+                                        <b>Số điện thoại:</b> <a class="float-right"></a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Địa chỉ</b> <a class="float-right">@Model.Address</a>
+                                        <b>Địa chỉ</b> <a class="float-right"></a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Ngày tạo</b> <a class="float-right">@Model.CreatedDate</a>
+                                        <b>Ngày tạo</b> <a class="float-right"></a>
                                     </li>
                                 </ul>
 
