@@ -29,6 +29,10 @@
 
             var arrDate = [];
             var arrDanhThu = [];
+            const VND = new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND',
+            });
 
             $.ajax({
                 url: '/Statistical/GetStatistical',
@@ -36,9 +40,11 @@
                 data: [],
                 success: function (rs) {
                     $.each(rs.data, function (i, item) {
-                        var strDate = moment(item.date).format('dd/MM/yyyy');
+                        var strDate = moment(item.Date).format('DD/MM/YYYY');
                         arrDate.push(strDate);
                         arrDanhThu.push(item.Danhthu);
+                        console.log(VND.format(item.Danhthu))
+                        console.log(arrDate)
                     })
                     var areaChartData = {
                         labels: arrDate,
@@ -61,7 +67,7 @@
                     var barChartCanvas = $('#barChart').get(0).getContext('2d')
                     var barChartData = $.extend(true, {}, areaChartData)
                     var temp0 = areaChartData.datasets[0]
-                    barChartData.datasets[0] = temp0
+                    barChartData.datasets[0] = temp0;
 
                     var barChartOptions = {
                         responsive: true,

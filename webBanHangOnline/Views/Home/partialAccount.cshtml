@@ -14,20 +14,23 @@
     }
     else
     {
-        <a href="#">
-            Welcome:@ViewBag.hovaten
+        if (ViewBag.hovaten != null & ViewBag.role != null)
+        {
+            <a href="#">
+                Welcome:@ViewBag.hovaten
 
-            <i class="fa fa-angle-down"></i>
-        </a>
+                <i class="fa fa-angle-down"></i>
+            </a>
 
 
-        <ul class="account_selection">
-            @if (ViewBag.role.ToLower() == "admin" || ViewBag.role.ToLower() =="employee")
-            {
-                <li><a href="/admin"><i class="fa fa-user-plus" aria-hidden="true"></i>Quản lý</a></li>
+            <ul class="account_selection">
+                @if (ViewBag.role.ToLower() == "admin" || ViewBag.role.ToLower() == "employee")
+                {
+                    <li><a href="/admin"><i class="fa fa-user-plus" aria-hidden="true"></i>Quản lý</a></li>
 
-            }
-            <li><a href="javascript:document.getElementById('logOffForm').submit()"><i class="fa fa-user-plus" aria-hidden="true"></i>Log out</a></li>
-        </ul>
+                }
+                <li><a href="javascript:document.getElementById('logOffForm').submit()"><i class="fa fa-user-plus" aria-hidden="true"></i>Log out</a></li>
+            </ul>
+        }
     }
 </li>

@@ -1,4 +1,4 @@
-﻿@model webBangHangOnline.Models.RegisterViewModel
+﻿@model webBangHangOnline.Models.RegisterAccountViewModel
 @{
     ViewBag.Title = "Register";
 }
@@ -11,31 +11,34 @@
             @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>Create a new account.</h4>
-                <hr />
-                @Html.ValidationSummary("", new { @class = "text-danger" })
+                @Html.ValidationSummary(false)
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-6 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                    </div>
+                    <label for="exampleInputEmail1">Tên tài khoản</label>
+                    @Html.TextBoxFor(x => x.UserName, new { @class = "form-control", @placeholder = "Email" })
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-6 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                    </div>
+                    <label for="exampleInputEmail1">Họ và tên</label>
+                    @Html.TextBoxFor(x => x.FullName, new { @class = "form-control", @placeholder = "Họ và tên" })
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-6 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-                    </div>
+                    <label for="exampleInputEmail1">Số điện thoại</label>
+                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control", @placeholder = "Số điện thoại", @onkeypress = "allowOnlyNumbers(event)" })
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" class="btn btn-default" value="Register" />
-                    </div>
+                    <label for="exampleInputEmail1">Địa chỉ</label>
+                    @Html.TextBoxFor(x => x.Address, new { @class = "form-control", @placeholder = "Địa chỉ" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Mật khẩu</label>
+                    @Html.PasswordFor(x => x.Password, new { @class = "form-control", @placeholder = "Mật khẩu" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nhập lại mật khẩu</label>
+                    @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control", @placeholder = "Nhập lại mật khẩu" })
+                </div>
+                <div class="form-group">
+                    <a href="/" class="btn btn-danger">Quay lại</a>
+                    <button type="submit" class="btn btn-primary">Đăng ký</button>
                 </div>
             }
         </div>

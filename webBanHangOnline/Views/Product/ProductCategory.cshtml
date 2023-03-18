@@ -118,27 +118,15 @@
                                         </ul>
                                     </li>
                                 </ul>
-                                @*<div class="pages d-flex flex-row align-items-center">
-                                        <div class="page_current">
-                                            <span>1</span>
-                                            <ul class="page_selection">
-                                                <li><a href="#">1</a></li>
-                                                <li><a href="#">2</a></li>
-                                                <li><a href="#">3</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="page_total"><span>of</span> 3</div>
-                                        <div id="next_page" class="page_next"><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
-                                    </div>*@
 
                             </div>
 
                             <!-- Product Grid -->
 
-                            <div class="product-grid ">
-
+                            <div class="product-grid">
+                                @Html.Action("Partial_ItemsByCateId","Product")
                                 <!-- Product 1 -->
-                                @if (Model != null && Model.Any())
+                                @*@if (Model != null && Model.Any())
                                 {
                                     foreach (var item in Model)
                                     {
@@ -177,7 +165,7 @@
                                             <div class="red_button add_to_cart_button"><a href="#" class="btnAddToCart" data-id="@item.Id">add to cart</a></div>
                                         </div>
                                     }
-                                }
+                                }*@
 
                             </div>
 

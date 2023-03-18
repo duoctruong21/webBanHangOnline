@@ -45,7 +45,7 @@ namespace webBangHangOnline
             routes.MapRoute(
                name: "CategoryProduct",
                url: "danh-muc-san-pham/{alias}-{id}",
-               defaults: new { controller = "Product", action = "ProductCategory", alias = UrlParameter.Optional },
+               defaults: new { controller = "Product", action = "Index", alias = UrlParameter.Optional },
                namespaces: new[] { "webBangHangOnline.Controllers" }
             );
 

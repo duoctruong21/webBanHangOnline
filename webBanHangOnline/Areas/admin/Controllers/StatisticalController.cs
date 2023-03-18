@@ -30,13 +30,13 @@ namespace webBangHangOnline.Areas.admin.Controllers
                         };
             if (!string.IsNullOrEmpty(fromDate))
             {
-                DateTime startDate = DateTime.ParseExact(fromDate, "dd/MM/yyy", null);
+                DateTime startDate = DateTime.ParseExact(fromDate, "dd/MM/yyyy", null);
                 query = query.Where(x=>x.createDate >= startDate);
             }
 
             if (!string.IsNullOrEmpty(toDate))
             {
-                DateTime endDate = DateTime.ParseExact(toDate, "dd/MM/yyy", null);
+                DateTime endDate = DateTime.ParseExact(toDate, "dd/MM/yyyy", null);
                 query = query.Where(x => x.createDate < endDate);
             }
 

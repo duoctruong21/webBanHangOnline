@@ -23,7 +23,7 @@ namespace webBangHangOnline.Controllers
         }
 
         public ActionResult MenuProductCategory() {
-            var items = db.productsCategory.ToList();
+            var items = db.productsCategory.Where(x => x.isActive && x.isDeleted == false).ToList();
             return PartialView("_MenuProductCategory", items);
         }
         public ActionResult MenuLeft(int? id)
@@ -32,7 +32,7 @@ namespace webBangHangOnline.Controllers
             {
                 ViewBag.CateId = id;
             }
-            var items = db.productsCategory.ToList();
+            var items = db.productsCategory.Where(x => x.isActive && x.isDeleted == false).ToList();
             return PartialView("_MenuLeft", items);
         }
 
