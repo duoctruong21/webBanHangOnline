@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "Thanh toán";
+}
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/categories_styles.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/categories_responsive.css">
+<div class="container product_section_container">
+    <div class="row">
+        <div class="col product_section clearfix">
+
+            <!-- Breadcrumbs -->
+
+            <div class="breadcrumbs d-flex flex-row align-items-center">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Giỏ hàng</a></li>
+                </ul>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1>Thanh toán</h1>
+                    <p>Bạn hãy kiểm tra sản phẩm trước khi thanh toán</p>
+                </div>
+            </div>
+            <hr />
+            @if (ViewBag.CheckCart != null)
+            {
+                <div class="row text-center">
+                    <div class="col-md-5 success_payment">
+                        @Html.Action("PartialCheckOut", "ShoppingCart")
+                    </div>
+                    <div class="col-md-7 success_payment">
+                        <h3>Giỏ hàng</h3>
+                        <div>
+                            @Html.Action("PartialItemPay", "ShoppingCart")
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div>
+                    Vui lòng thêm sản phẩm trước khi thanh toán, quay lại trang <a href="/san-pham">sản phẩm</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script>
+        function OnFailureCO(rs) {
+            if (!rs.success) {
+                $('#show_success_payment').html("Bạn mua hàng thất bại! Vui lòng thử lại");
+            }
+        }
+
+        /* $(document).ready(function () {
+             $('#myFormInfoCustomer').validate({
+                 rules: {
+                     'CustomerName': {
+                         required: true
+                     },
+                     'Phone': {
+                         required: true,
+                     },
+                     'Address': {
+                         required: true
+                     },
+                     'Email': {
+                         required: true,
+                         Email: true
+                     }
+                 },
+                 messages: {
+                     'CustomerName': 'Bạn không được để trống',
+                     'Phone': 'Bạn không được để trống',
+                     'Address': 'Bạn không được để trống',
+                     'Email': 'Email không hợp lệ'
+                 }
+             });
+         });*/
+    </script>
+}

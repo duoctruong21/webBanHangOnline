@@ -1,0 +1,60 @@
+﻿@model IEnumerable<webBangHangOnline.Models.ShoppingCartItem>
+
+@{
+        ViewBag.Checksp = true;
+        var checkmodel = (Model != null && Model.Any()) ? "" : "display_none";
+    }
+
+<table class="table">
+    <thead>
+        <tr class="text-center @checkmodel ">
+            <th>STT</th>
+            <th>Ảnh sản phẩm</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="loadTable">
+        @if (Model != null && Model.Any())
+        {
+            var i = 0;
+            decimal tongtien = 0;
+            ViewBag.Checksp = 2;
+            foreach (var item in Model)
+            {
+                <tr id="trow_@item.ProductId" class="text-center">
+                    <td>@(i+1)</td>
+                    <td><img width="50" src="@item.ProductImg" /></td>
+                    <td><a href="/chi-tiet-san-pham/@item.Alias-@item.ProductId"> @item.ProductName</a></td>
+                    <td>@item.Price.ToString("###,###,###.##")</td>
+                    @*<td><a href="#" data-id="@item.ProductId" class="btn btn-sm"><i class="fa fa-minus"></i></a> @item.Quantity <a class="btn btn-sm" data-id="@item.ProductId" href="#"><i class="fa fa-plus"></i> </a> </td>*@
+                    <td><input class="form-control" type="number" id="Quantity_@item.ProductId" value="@item.Quantity" /></td>
+                    <td>
+                        <a href="#" data-id="@item.ProductId" class="btn btn-sm btn-danger btnDeleteCart">Xóa</a>
+                        <a href="#" data-id="@item.ProductId" class="btn btn-sm btn-success btnUpdate">Cập nhật</a>
+                    </td>
+                </tr>
+                i++;
+                tongtien += @item.Price * @item.Quantity;
+            }
+            @*<tr>
+                <td colspan="2"></td>
+                <td colspan="2" class="text-right"><a href="/thanh-toan" class="btn btn-success w-100">Thanh toán</a></td>
+                <td colspan="2"></td>
+            </tr>*@
+        }
+        else
+        {
+            
+            <tr class="giohangtrong">
+                <td>Giỏ hàng trống</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="@checkmodel">
+    <a href="/thanh-toan" class="btn btn-success w-100">Thanh toán</a>
+</div>
+
