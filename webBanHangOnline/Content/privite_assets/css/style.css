@@ -1,8 +1,13 @@
-﻿.display__webkit__col-2 {
+﻿a {
+    color: #fff;
+}
+
+
+.display__webkit__col-2 {
     display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     line-height: 2.2rem;
     font-size: 1rem;
     -webkit-box-orient: vertical;
@@ -40,4 +45,138 @@
     pointer-events: none;
     color: grey;
     text-decoration: none;
+}
+
+.display_flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-body {
+    padding-top:0;
+}
+
+.out_of_product-main {
+    position: relative;
+}
+
+.out_of_product {
+    position: absolute;
+    top: 0;
+    height: 360px;
+    width: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.out_of_product--title {
+    position: absolute;
+    top: 50%;
+    font-size: 30px;
+    font-weight: 700;
+    width: 100%;
+    color: red;
+    text-align: center;
+    animation: colorChange 0.1s infinite;
+    -webkit-animation: colorChange 1s infinite;
+    -moz-animation: colorChange 1s infinite;
+    -o-animation: colorChange 0.1s infinite
+}
+
+.title_shop {
+    font-size: 40px !important;
+    font-weight: 700;
+    width: 100%;
+    color: red;
+    text-align: center;
+    animation: colorChange 0.1s infinite;
+    -webkit-animation: colorChange 1s infinite;
+    -moz-animation: colorChange 1s infinite;
+    -o-animation: colorChange 0.1s infinite
+}
+
+@keyframes colorChange {
+    0% {
+        color: red;
+        text-shadow: 5px 20px 17px red;
+    }
+    20% {
+        color: aqua;
+        text-shadow: 5px 20px 17px aqua;
+    }
+    40% {
+        color: blueviolet;
+        text-shadow: 5px 20px 17px blueviolet;
+    }
+    60% {
+        color: palevioletred;
+        text-shadow: 5px 20px 17px palevioletred;
+    }
+    100% {
+        color: yellow;
+        text-shadow: 5px 20px 17px yellow;
+    }
+}
+
+@keyframes colorBackground {
+    0% {
+        background-color: #fff;
+    }
+
+    20% {
+        background-color: #000;
+    }
+
+    40% {
+        background-color: #ccc;
+    }
+
+    60% {
+        background-color: #999;
+    }
+
+    100% {
+        background-color: #333;
+    }
+}
+
+@keyframes colorBackgrounds {
+    0% {
+        background-color: green;
+    }
+
+    20% {
+        background-color: blue;
+    }
+
+    40% {
+        background-color: orange;
+    }
+
+    60% {
+        background-color: blueviolet;
+    }
+
+    100% {
+        background-color: red;
+    }
+}
+
+.main_nav_container {
+    
+    animation: colorBackground 0.1s infinite;
+    -webkit-animation: colorBackground 1s infinite;
+    -moz-animation: colorBackground 1s infinite;
+    -o-animation: colorBackground 0.1s infinite
+}
+
+.super_container {
+    animation: colorBackgrounds 0.1s infinite;
+    -webkit-animation: colorBackgrounds 1s infinite;
+    -moz-animation: colorBackgrounds 1s infinite;
+    -o-animation: colorBackgrounds 0.1s infinite
+}
+
+.navbar_menu li a, .navbar_user li a {
+    color: #fff;
 }

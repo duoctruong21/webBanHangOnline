@@ -1,6 +1,13 @@
-﻿@model IEnumerable<webBangHangOnline.Models.ApplicationUser>
+﻿@model PagedList.PagedList<webBangHangOnline.Models.ApplicationUser>
+@using PagedList.Mvc
 @{
     ViewBag.Title = "Quản lý tài khoản";
+    var options = new PagedListRenderOptions
+    {
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        MaximumPageNumbersToDisplay = 5
+    };
 }
 
 @section naviheader{
@@ -60,16 +67,16 @@
                 <tbody>
                     @if (Model != null && Model.Any())
                     {
-                        var i = 1;
+                        var i = (ViewBag.Page - 1) * ViewBag.PageSize + 1;
 
                         foreach (var item in Model)
                         {
                             <tr id="trow_@item.Id">
-                                <td class="index">@i</td>
-                                <td class="index">@item.Email</td>
-                                <td class="index">@item.Fullname</td>
-                                <td class="index">@item.Phone</td>
-                                <td class="index">@item.CreatedDate</td>
+                                <td >@i</td>
+                                <td >@item.Email</td>
+                                <td >@item.Fullname</td>
+                                <td >@item.Phone</td>
+                                <td >@item.CreatedDate</td>
                                 <td>
                                     <a href="/admin/account/ShowUserAccount/@item.Id" class="btn btn-sm btn-primary">xem</a>
                                     <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
@@ -87,6 +94,12 @@
                     }
                 </tbody>
             </table>
+            <div class="row">
+                <div class="col-6"></div>
+                <div class="col-6" style="text-align: right;">
+                    @Html.PagedListPager(Model, page => Url.Action("index", new { page }), options)
+                </div>
+            </div>
         </div>
         <!-- /.card-body -->
         <div class="card-footer">

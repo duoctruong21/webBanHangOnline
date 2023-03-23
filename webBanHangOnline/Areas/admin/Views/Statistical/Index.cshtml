@@ -43,8 +43,6 @@
                         var strDate = moment(item.Date).format('DD/MM/YYYY');
                         arrDate.push(strDate);
                         arrDanhThu.push(item.Danhthu);
-                        console.log(VND.format(item.Danhthu))
-                        console.log(arrDate)
                     })
                     var areaChartData = {
                         labels: arrDate,
@@ -66,13 +64,30 @@
                     //-------------
                     var barChartCanvas = $('#barChart').get(0).getContext('2d')
                     var barChartData = $.extend(true, {}, areaChartData)
-                    var temp0 = areaChartData.datasets[0]
+                    var temp0 = areaChartData.datasets[0];
                     barChartData.datasets[0] = temp0;
 
                     var barChartOptions = {
                         responsive: true,
                         maintainAspectRatio: false,
-                        datasetFill: false
+                        datasetFill: false,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true,
+                                    callback: function (value, index, values) {
+                                        return value.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                                    }
+                                }
+                            }]
+                        },
+                        tooltips: {
+                            callbacks: {
+                                label: function (tooltipItem, data) {
+                                    return "Danh thu: " + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });;
+                                }
+                            }
+                        }
                     }
 
                     new Chart(barChartCanvas, {

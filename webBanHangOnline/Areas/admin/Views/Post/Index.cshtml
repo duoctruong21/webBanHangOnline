@@ -51,14 +51,6 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Danh sách @ViewBag.Title</h3>
-
-            <div class="card-tools">
-                <a href="/admin/post/add" class="btn btn-primary">Thêm mới</a>
-                <a href="#" class="btn btn-danger" id="BtnDeleteAll">Xóa</a>
-            </div>
-        </div>
-        <div class="card-body">
             <div class="row">
                 <div class="col-3">
                     @using (Html.BeginForm("Index", "Post", FormMethod.Get, new { }))
@@ -66,23 +58,30 @@
                         <div class="input-group input-group-sm">
                             @Html.TextBox("searchText", "", new { @class = "form-control form-control-lg" })
                             <span class="input-group-append">
-                                <button type="submit" class="btn btn-info btn-flat">Go!</button>
+                                <button type="submit" class="btn btn-info">Go!</button>
                             </span>
                         </div>
                     }
                 </div>
+                <div class="col-6"></div>
+                <div class="col-3 d-flex justify-content-end">
+                    <a href="/admin/post/add" class="btn btn-primary btn-sm">Thêm mới</a>
+                    <a href="#" class="btn btn-danger btn-sm ml-2" id="BtnDeleteAll">Xóa</a>
+                </div>
             </div>
+        </div>
+        <div class="card-body">
             <table class="table table-hover reLoadTable">
                 <thead>
                     <tr>
-                        <th><input type="checkbox" id="SelectAll" /></th>
                         <th>STT</th>
                         <th>Tiêu đề tin</th>
                         <th>Ngày tạo</th>
-                        <th>Hình ảnh</th>
-                        <th>Trạng thái</th>
+                        <th width="100px">Hình ảnh</th>
+                        <th width="100px">Trạng thái</th>
                         <th>Mô tả</th>
-                        <th></th>
+                        <th width="150px">Quản lý</th>
+                        <th><input type="checkbox" id="SelectAll" /></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -93,20 +92,19 @@
                         {
                             var strCheck = item.isActive ? "<i class='fa fa-check text-success'></i>" : "<i class='fa fa-ban text-danger'></i>";
                             <tr id="trow_@item.Id">
-                                <td><input type="checkbox" class="cbkItem" value="@item.Id" /></td>
                                 <td class="index">@i</td>
-                                <td>@item.Title</td>
+                                <td class="display__webkit__col-2" data-toggle="tooltip" title="@item.Title">@item.Title</td>
                                 <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
                                 <td><img width="50" src="@item.Image" /></td>
                                 <td class="text-center">
                                     <a href="#" data-id="@item.Id" class="btnActive">@Html.Raw(strCheck)</a>
                                 </td>
-                                <td>@item.Description</td>
-
+                                <td class="display__webkit__col-2" data-toggle="tooltip" title="@item.Description">@item.Description</td>
                                 <td>
                                     <a href="/admin/post/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
                                     <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
                                 </td>
+                                <td><input type="checkbox" class="cbkItem" value="@item.Id" /></td>
                             </tr>
                             i++;
                         }

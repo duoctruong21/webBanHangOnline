@@ -18,21 +18,18 @@ namespace webBangHangOnline.Areas.admin.Controllers
             if (User.Identity.Name != "")
             {
                 var items = db.Users.SingleOrDefault(x => x.Email.Contains(User.Identity.Name));
-                var roleName = from user in items.Roles
-                               join role in db.Roles.ToList() on user.RoleId equals role.Id
-                               select new
+                List<InfoAccount> infoAccounts = (from user in items.Roles
+                               join role in db.Roles on user.RoleId equals role.Id
+                               select new InfoAccount
                                {
                                    role = role.Name,
-                                   hovaten = items.Fullname,
-                                   email = items.Email
-                                   
-                               };
-                foreach (var item in roleName)
-                {
-                    ViewBag.role = item.role;
-                    ViewBag.hovaten = item.hovaten;
-                }
-                return View(roleName);
+                                   name = items.Fullname,
+                                   phone = items.Phone,
+                                   address = items.Address,
+                                   email= items.Email,
+
+                               }).ToList();
+                return View(infoAccounts);
             }
             return View();
         }

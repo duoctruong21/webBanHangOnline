@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model List<webBangHangOnline.Models.InfoAccount>
 @{
     ViewBag.Title = "Trang chủ admin";
     Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
@@ -30,22 +30,23 @@
                     <div class="col-md-4">
                         <div class="card card-primary card-outline">
                             <div class="card-body box-profile">
+                                @foreach (var item in Model)
+                                {
+                                    <h3 class="profile-username text-center">@item.name</h3>
 
-                                <h3 class="profile-username text-center">@ViewBag.hovaten</h3>
-
-                                <p class="text-muted text-center">@ViewBag.role</p>
-
-                                <ul class="list-group list-group-unbordered mb-3">
-                                    <li class="list-group-item">
-                                        <b>Số điện thoại:</b> <a class="float-right"></a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Địa chỉ</b> <a class="float-right"></a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Ngày tạo</b> <a class="float-right"></a>
-                                    </li>
-                                </ul>
+                                    <p class="text-muted text-center">@item.phone</p>
+                                    <ul class="list-group list-group-unbordered mb-3">
+                                        <li class="list-group-item">
+                                            <b>Số điện thoại: @item.role</b> <a class="float-right"></a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Địa chỉ: @item.address</b> <a class="float-right"></a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Ngày tạo: @item.createdDate</b> <a class="float-right"></a>
+                                        </li>
+                                    </ul>
+                                }
 
                                 <a href="" class="btn btn-primary btn-block"><b>Edit profile</b></a>
                             </div>

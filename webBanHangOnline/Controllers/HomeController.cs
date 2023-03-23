@@ -69,12 +69,12 @@ namespace webBangHangOnline.Controllers
             {
                 var items = db.Users.SingleOrDefault(x => x.Email.Contains(User.Identity.Name));
                 var roleName = from user in items.Roles
-                               join role in db.Roles.ToList() on user.RoleId equals role.Id
+                               join role in db.Roles on user.RoleId equals role.Id
                                select new
                                {
                                    role = role.Name,
-                                   hovaten = items.Fullname,
-                                   email = items.Email
+                                   hovaten = items.Fullname,                                   
+
                                };
                 foreach (var item in roleName) {
                     ViewBag.role = item.role;
@@ -82,11 +82,7 @@ namespace webBangHangOnline.Controllers
                 }
                 return PartialView(roleName);
             }
-            else
-            {
-
             return PartialView();
-            }
 
         }
 
