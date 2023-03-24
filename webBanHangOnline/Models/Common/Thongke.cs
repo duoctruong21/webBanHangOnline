@@ -15,7 +15,7 @@ namespace webBangHangOnline.Models.Common
 
         public static StatisticalViewModel Statistical() {
             using(var connect = new SqlConnection(strConnect)){
-                var item = connect.QueryFirstOrDefault<StatisticalViewModel>("sp_thongke", commandType: CommandType.StoredProcedure);
+                var item = connect.QueryFirstOrDefault<StatisticalViewModel>("sp_statistical", commandType: CommandType.StoredProcedure);
                 return item;
             }
         }

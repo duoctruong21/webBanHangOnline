@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,9 +52,19 @@ namespace webBangHangOnline.Areas.admin.Controllers
             }
         }
         // GET: admin/Account
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var items = db.Users.ToList();
+            //pagedlist
+            var PageSize = 10;
+            if(page == null)
+            {
+                page = 1;
+            }
+            IEnumerable<ApplicationUser> items = db.Users.ToList();
+            var PageIndex = (page.HasValue? page.Value : 1);
+            items = items.ToPagedList(PageIndex, PageSize);
+            ViewBag.Page = page;
+            ViewBag.PageSize = PageSize;
             return View(items);
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -117,6 +118,20 @@ namespace webBangHangOnline.Controllers
                     Random rd = new Random();
                     order.Code = "DH" + rd.Next(0,9) + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9);
                     db.orders.Add(order);
+                    db.SaveChanges();
+                    // cập nhật lại kho
+                    var prd = db.products;
+                    foreach (var product in prd)
+                    {
+                        foreach(var item in cart.items)
+                        {
+                            if(product.Id == item.ProductId)
+                            {
+                                product.Quantity = product.Quantity - item.Quantity;
+                            }
+                        }
+                    }
+                    db.products.AddOrUpdate();
                     db.SaveChanges();
                     //send mail
                     var strSanpham = "";
