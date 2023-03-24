@@ -27,6 +27,7 @@ namespace webBangHangOnline.Areas.admin.Controllers
                                    phone = items.Phone,
                                    address = items.Address,
                                    email= items.Email,
+                                   createdDate = items.CreatedDate
 
                                }).ToList();
                 return View(infoAccounts);

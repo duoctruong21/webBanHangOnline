@@ -3,7 +3,7 @@
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
-            with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
             <li class="nav-item">
                 <a href="/admin/category" class="nav-link">
                     @*<i class="nav-icon fas fa-tachometer-alt"></i>*@
@@ -55,14 +55,29 @@
                 </ul>
             </li>
             <li class="nav-item">
-                <a href="/admin/orders" class="nav-link">
-                    @*<i class="nav-icon fas fa-th"></i>*@
+                <a href="/admin" class="nav-link">
+                    @*<i class="nav-icon fas fa-tachometer-alt"></i>*@
                     <p>
-                        Đơn hàng
-                        @*<span class="right badge badge-danger">New</span>*@
+                        Quản lý Đơn hàng
+                        <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="/admin/orders" class="nav-link">
+                            
+                            <p>Đơn hàng chưa thanh toán</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin/orders/viewpaied" class="nav-link">
+                            
+                            <p>Đơn hàng đã thanh toán</p>
+                        </a>
+                    </li>
+                </ul>
             </li>
+            
             <li class="nav-item">
                 <a href="/admin/role" class="nav-link">
                     @*<i class="nav-icon fas fa-th"></i>*@

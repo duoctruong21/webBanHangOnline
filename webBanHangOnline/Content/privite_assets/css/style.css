@@ -1,8 +1,4 @@
-﻿a {
-    color: #fff;
-}
-
-
+﻿
 .display__webkit__col-2 {
     display: -webkit-box;
     overflow: hidden;
@@ -163,18 +159,18 @@
 }
 
 .main_nav_container {
-    
-    animation: colorBackground 0.1s infinite;
+    background-color: rgba(0,0,0,0.7)
+    /*animation: colorBackground 0.1s infinite;
     -webkit-animation: colorBackground 1s infinite;
     -moz-animation: colorBackground 1s infinite;
-    -o-animation: colorBackground 0.1s infinite
+    -o-animation: colorBackground 0.1s infinite*/
 }
 
 .super_container {
-    animation: colorBackgrounds 0.1s infinite;
+    /*animation: colorBackgrounds 0.1s infinite;
     -webkit-animation: colorBackgrounds 1s infinite;
     -moz-animation: colorBackgrounds 1s infinite;
-    -o-animation: colorBackgrounds 0.1s infinite
+    -o-animation: colorBackgrounds 0.1s infinite*/
 }
 
 .navbar_menu li a, .navbar_user li a {
