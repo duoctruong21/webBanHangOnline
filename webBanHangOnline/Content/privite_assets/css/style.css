@@ -166,7 +166,20 @@
     -o-animation: colorBackground 0.1s infinite*/
 }
 
+.main_slider_content {
+    background-color: rgba(244,244,244,0.5);
+    padding: 20px;
+}
+
 .super_container {
+    /*animation: colorBackgrounds 0.1s infinite;
+    -webkit-animation: colorBackgrounds 1s infinite;
+    -moz-animation: colorBackgrounds 1s infinite;
+    -o-animation: colorBackgrounds 0.1s infinite*/
+}
+
+.main_slider {
+    background-image: url(https://live.staticflickr.com/4018/4367002939_a48a80cc75_b.jpg)
     /*animation: colorBackgrounds 0.1s infinite;
     -webkit-animation: colorBackgrounds 1s infinite;
     -moz-animation: colorBackgrounds 1s infinite;

@@ -52,7 +52,7 @@ namespace webBangHangOnline.Controllers
             item.tuantruoc = HttpContext.Application["tuantruoc"].ToString();
             item.thangnay = HttpContext.Application["thangnay"].ToString();
             item.thangtruoc = HttpContext.Application["thangtruoc"].ToString();
-            item.tatca = HttpContext.Application["tatca"].ToString();
+            item.tongso = HttpContext.Application["tongso"].ToString();
             return PartialView(item);
         }
 
