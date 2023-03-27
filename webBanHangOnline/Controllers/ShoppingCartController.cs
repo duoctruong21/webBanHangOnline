@@ -18,6 +18,7 @@ namespace webBangHangOnline.Controllers
         public ActionResult Index()
         {
             ShoppingCart cart = (ShoppingCart)Session["cart"];
+            
             if (cart != null && cart.items.Any())
             {
                 ViewBag.CheckCart = cart;
@@ -85,7 +86,8 @@ namespace webBangHangOnline.Controllers
 
         public ActionResult PartialCheckOut()
         {
-            return PartialView();   
+            var items = db.Users.SingleOrDefault(x => x.Email.Contains(User.Identity.Name));
+            return PartialView(items);   
         }
 
         [HttpPost]
