@@ -247,6 +247,10 @@
     <Compile Include="Migrations\202303090913308_updatedbfixbug.designer.cs">
       <DependentUpon>202303090913308_updatedbfixbug.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202303270813350_updatecategoryproduct.cs" />
+    <Compile Include="Migrations\202303270813350_updatecategoryproduct.designer.cs">
+      <DependentUpon>202303270813350_updatecategoryproduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CommonAbstract.cs" />
@@ -2374,6 +2378,7 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\privite_assets\css\style.css" />
     <Content Include="Content\privite_assets\js\JsShopping.js" />
+    <Content Include="Content\templates\sendmailconfirm.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -2547,6 +2552,7 @@
     <Content Include="Areas\admin\Views\Statistical\Index.cshtml" />
     <Content Include="Areas\admin\Views\Orders\ViewPaied.cshtml" />
     <Content Include="Areas\admin\Views\Orders\unViewPaied.cshtml" />
+    <Content Include="Areas\admin\Views\Account\ConfirmEmail.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -2674,6 +2680,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303090913308_updatedbfixbug.resx">
       <DependentUpon>202303090913308_updatedbfixbug.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303270813350_updatecategoryproduct.resx">
+      <DependentUpon>202303270813350_updatecategoryproduct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
