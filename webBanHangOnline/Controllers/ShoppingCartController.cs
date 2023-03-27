@@ -86,8 +86,12 @@ namespace webBangHangOnline.Controllers
 
         public ActionResult PartialCheckOut()
         {
-            var items = db.Users.SingleOrDefault(x => x.Email.Contains(User.Identity.Name));
-            return PartialView(items);   
+            if (User.Identity.Name != null && User.Identity.Name != "")
+            {
+                var items = db.Users.SingleOrDefault(x => x.Email.Contains(User.Identity.Name));
+                return PartialView(items);
+            }
+            return PartialView();
         }
 
         [HttpPost]
