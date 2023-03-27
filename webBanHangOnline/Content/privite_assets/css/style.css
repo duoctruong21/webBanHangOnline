@@ -159,7 +159,7 @@
 }
 
 .main_nav_container {
-    background-color: rgba(0,0,0,0.7)
+    /*background-color: rgba(0,0,0,0.7)*/
     /*animation: colorBackground 0.1s infinite;
     -webkit-animation: colorBackground 1s infinite;
     -moz-animation: colorBackground 1s infinite;
@@ -184,8 +184,4 @@
     -webkit-animation: colorBackgrounds 1s infinite;
     -moz-animation: colorBackgrounds 1s infinite;
     -o-animation: colorBackgrounds 0.1s infinite*/
-}
-
-.navbar_menu li a, .navbar_user li a {
-    color: #fff;
 }

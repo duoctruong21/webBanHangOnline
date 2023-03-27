@@ -30,7 +30,7 @@
                     <td><a href="/chi-tiet-san-pham/@item.Alias-@item.ProductId"> @item.ProductName</a></td>
                     <td>@item.Price.ToString("###,###,###.##")</td>
                     @*<td><a href="#" data-id="@item.ProductId" class="btn btn-sm"><i class="fa fa-minus"></i></a> @item.Quantity <a class="btn btn-sm" data-id="@item.ProductId" href="#"><i class="fa fa-plus"></i> </a> </td>*@
-                    <td><input class="form-control" type="number" id="Quantity_@item.ProductId" value="@item.Quantity" /></td>
+                    <td><input class="form-control inputQuantity" type="number" data-id="@item.ProductId" id="Quantity_@item.ProductId" value="@item.Quantity" /></td>
                     <td>
                         <a href="#" data-id="@item.ProductId" class="btn btn-sm btn-danger btnDeleteCart">Xóa</a>
                         <a href="#" data-id="@item.ProductId" class="btn btn-sm btn-success btnUpdate">Cập nhật</a>
