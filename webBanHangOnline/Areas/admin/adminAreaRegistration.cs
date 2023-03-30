@@ -28,6 +28,13 @@ namespace webBangHangOnline.Areas.admin
                 namespaces: new[] { "webBangHangOnline.Areas.admin.Controllers" }
             );
 
+            context.MapRoute(
+               "Order",
+               "admin/orders/{paied}/{page}",
+               new { controller = "Orders", action = "Index", id = UrlParameter.Optional },
+               namespaces: new[] { "webBangHangOnline.Areas.admin.Controllers" }
+           );
+
         }
     }
 }

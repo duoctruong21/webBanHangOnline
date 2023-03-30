@@ -19,7 +19,7 @@ namespace webBangHangOnline.Areas.admin.Controllers
         }
         [HttpGet]
         public ActionResult GetStatistical(string fromDate, string toDate) {
-            var query = from o in db.orders
+            var query = from o in db.orders where o.TypePayment == 2
                         join od in db.ordersDetail on o.Id equals od.OrderId
                         join p in db.products on od.ProductId equals p.Id
                         select new

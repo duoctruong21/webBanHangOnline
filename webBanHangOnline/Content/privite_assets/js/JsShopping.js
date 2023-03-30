@@ -47,6 +47,7 @@
                     $('.display_none').removeClass('display_none').addClass('giohangco');
                     $('.giohangtrong').removeClass('.giohangtrong').addClass('display_none');
                     alert(rs.msg);
+                    location.reload();
                 }
             }
         })
@@ -62,6 +63,13 @@
             update(id, quantity);
         }
         
+    })
+
+    $('body').on('change', '.inputQuantity', function () {
+        var id = $(this).data('id');
+        var quantity = $(this).val();
+        update(id, quantity);
+
     })
 
     $('body').on('click', '.btnDeleteCart', function (e) {

@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Web;
+using System.Web.Mvc;
+using webBangHangOnline.Models.EF;
+
 
 namespace webBangHangOnline.Models
 {
@@ -47,6 +51,7 @@ namespace webBangHangOnline.Models
                 checkExits.PriceTotal += checkExits.Price * checkExits.Quantity;
             }
         }
+        
 
         public decimal GetTotalPrice()
         {

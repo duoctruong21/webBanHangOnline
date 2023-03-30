@@ -23,7 +23,7 @@ namespace webBangHangOnline
             Application["tuantruoc"] = 0;
             Application["thangnay"] = 0;
             Application["thangtruoc"] = 0;
-            Application["tatca"] = 0;
+            Application["tongso"] = 0;
             Application["visitors_online"] = 0;
         }
         protected void Session_Start(object sender, EventArgs e)
@@ -43,7 +43,7 @@ namespace webBangHangOnline
                     Application["tuantruoc"] = long.Parse("0"+item.tuantruoc.ToString("#,###"));
                     Application["thangnay"] = long.Parse("0"+item.thangnay.ToString("#,###"));
                     Application["thangtruoc"] = long.Parse("0"+item.thangtruoc.ToString("#,###"));
-                    Application["tatca"] = (int.Parse(item.tatca.ToString())).ToString("#,###");
+                    Application["tongso"] = (int.Parse(item.tongso.ToString())).ToString("#,###");
                 }
             }
             catch

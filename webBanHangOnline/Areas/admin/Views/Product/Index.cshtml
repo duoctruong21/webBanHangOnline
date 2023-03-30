@@ -36,7 +36,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item">Trang chủ</li>
                     <li class="breadcrumb-item active">@ViewBag.Title</li>
                 </ol>
             </div>
@@ -50,44 +50,40 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Danh sách @ViewBag.Title</h3>
-
-            <div class="card-tools">
-                <a href="/admin/product/add" class="btn btn-primary">Thêm mới</a>
-                <a href="#" class="btn btn-danger" id="BtnDeleteAll">Xóa</a>
-            </div>
-        </div>
-        <div class="card-body">
             <div class="row">
                 <div class="col-3">
-                    @using (Html.BeginForm("Index", "product", FormMethod.Get, new { }))
+                    @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { }))
                     {
                         <div class="input-group input-group-sm">
                             @Html.TextBox("searchText", "", new { @class = "form-control form-control-lg" })
                             <span class="input-group-append">
-                                <button type="submit" class="btn btn-info btn-flat">Go!</button>
+                                <button type="submit" class="btn btn-info">Go!</button>
                             </span>
                         </div>
                     }
                 </div>
+                <div class="col-6"></div>
+                <div class="col-3 d-flex justify-content-end">
+                    <a href="/admin/post/add" class="btn btn-primary btn-sm">Thêm mới</a>
+                    <a href="#" class="btn btn-danger btn-sm ml-2" id="BtnDeleteAll">Xóa</a>
+                </div>
             </div>
-            <div class="row" style="overflow-x:scroll;">
+        </div>
+        <div class="card-body">
+            <div class="row" >
                 <table class="table table-hover w-100" >
                     <thead>
                         <tr>
                             <th><input type="checkbox" id="SelectAll" /></th>
                             <th>STT</th>
                             <th>Hình ảnh</th>
-                            <th>Tên @ViewBag.title</th>
-                            <th>SKU</th>
-                            <th>Tên danh mục sản phẩm</th>
-                            <th>Ngày tạo</th>
+                            <th>Tên @ViewBag.title</th>                            
+                            <th>Loại</th>
                             <th>Số lượng</th>
                             <th>Giá</th>
                             <th width="100px">Trạng thái</th>
                             <th width="50px">Home</th>
                             <th width="50px">Sale</th>
-                            <th>Mô tả</th>
                             <th width="150px">Quản lý</th>
                         </tr>
                     </thead>
@@ -114,10 +110,9 @@
                                             <img class="imgProduct" data-id="@item.Id" width="50" src="@item.Image" />
                                         }
                                     </td>
-                                    <td>@item.Title</td>
-                                    <td>@item.ProductCode</td>
+                                    <td class="display__webkit__col-2">@item.Title</td>
                                     <td>@item.ProductCategory.Title</td>
-                                    <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
+                                    @*<td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>*@
                                     <td>@item.Quantity</td>
                                     <td>@prices</td>
                                     <td class="text-center">
@@ -129,8 +124,6 @@
                                     <td class="text-center">
                                         <a href="#" data-id="@item.Id" class="btnSale">@Html.Raw(strSale)</a>
                                     </td>
-                                    <td class="display__webkit__col-2" data-toggle="tooltip" title="@item.Description">@item.Description</td>
-
                                     <td>
                                         <a href="/admin/product/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
                                         <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>

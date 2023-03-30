@@ -13,7 +13,7 @@ namespace webBangHangOnline.Models
         public int tuantruoc { get; set; }
         public int thangnay { get; set; }
         public int thangtruoc { get; set; }
-        public int tatca { get; set; }
+        public int tongso { get; set; }
     }
 
     public class StatisticalModel
@@ -24,6 +24,6 @@ namespace webBangHangOnline.Models
         public string tuantruoc { get; set; }
         public string thangnay { get; set; }
         public string thangtruoc { get; set; }
-        public string tatca { get; set; }
+        public string tongso { get; set; }
     }
 }
