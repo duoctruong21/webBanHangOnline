@@ -26,12 +26,8 @@ namespace webBangHangOnline.Controllers
             var items = db.productsCategory.Where(x => x.isActive && x.isDeleted == false).ToList();
             return PartialView("_MenuProductCategory", items);
         }
-        public ActionResult MenuLeft(int? id)
+        public ActionResult MenuLeft()
         {
-            if(id != null)
-            {
-                ViewBag.CateId = id;
-            }
             var items = db.productsCategory.Where(x => x.isActive && x.isDeleted == false).ToList();
             return PartialView("_MenuLeft", items);
         }
