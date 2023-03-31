@@ -28,7 +28,7 @@ namespace webBangHangOnline.Controllers
         }
         public ActionResult MenuLeft(int? id)
         {
-            if(id != null)
+            if (id != null)
             {
                 ViewBag.CateId = id;
             }
