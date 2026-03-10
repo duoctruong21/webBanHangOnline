@@ -35,7 +35,11 @@ namespace webBangHangOnline.Areas.admin.Controllers
         public ActionResult Add()
         {
             ViewBag.ProductCategory = new SelectList(db.productsCategory.Where(x=>x.isDeleted == false),"Id", "Title");
-            return View();
+            Product product = new Product();
+            product.Quantity = 1;
+            product.Price = 1;
+            product.PriceSale = 1;
+            return View(product);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

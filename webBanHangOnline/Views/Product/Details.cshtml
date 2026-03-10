@@ -79,14 +79,6 @@
                     <li><i class="fa fa-star" aria-hidden="true"></i></li>
                     <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
                 </ul>
-                <div class="product_color">
-                    <span>Select Color:</span>
-                    <ul>
-                        <li style="background: #e54e5d"></li>
-                        <li style="background: #252525"></li>
-                        <li style="background: #60b3f3"></li>
-                    </ul>
-                </div>
                 <div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
                     <span>Quantity:</span>
                     <div class="quantity_selector">
@@ -104,16 +96,9 @@
 <div class="tabs_section_container">
 
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="tabs_container">
-                    <ul class="tabs d-flex flex-sm-row flex-column align-items-left align-items-md-center justify-content-center">
-                        <li class="tab active" data-active-tab="tab_1"><span>Description</span></li>
-                        <li class="tab" data-active-tab="tab_2"><span>Additional Information</span></li>
-                        <li class="tab" data-active-tab="tab_3"><span>Reviews (2)</span></li>
-                    </ul>
-                </div>
-            </div>
+        <h2>Sản phẩm liên quan</h2>
+        <div class="product-grid">
+            @Html.Action("Partial_Product_in_Category", "Product")
         </div>
         <div class="row">
             <div class="col">

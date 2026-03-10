@@ -25,17 +25,16 @@
                 title: title,
                 price: price,
                 quantity: quantity,
-                img :img
+                img: img
             },
             success: function (rs) {
                 if (rs.success) {
                     $('.loadTable').append(`
                         <tr id="trow_${id}" class="text-center">
-                            <td>${quantity}</td>
                             <td><img width="50" src="${img}" /></td>
                             <td><a href="/chi-tiet-san-pham/@item.Alias-${id}">${title}</a></td>
                             <td>${price}</td>
-                            <td><input class="form-control" type="number" id="Quantity_${id}" value="${quantity}" /></td>
+                            <td><input class="form-control" type="number" id="Quantity_${id}" value="${quantity}" min="1" /></td>
                             <td>
                                 <a href="#" data-id="${id}" class="btn btn-sm btn-danger btnDeleteCart">Xóa</a>
                                 <a href="#" data-id="${id}" class="btn btn-sm btn-success btnUpdate">Cập nhật</a>
@@ -47,7 +46,6 @@
                     $('.display_none').removeClass('display_none').addClass('giohangco');
                     $('.giohangtrong').removeClass('.giohangtrong').addClass('display_none');
                     alert(rs.msg);
-                    location.reload();
                 }
             }
         })

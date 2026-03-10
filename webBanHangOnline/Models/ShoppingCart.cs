@@ -79,5 +79,6 @@ namespace webBangHangOnline.Models
         public int Quantity { get; set; }
         public decimal Price { get; set; }
         public decimal PriceTotal { get; set;}
+        public int Count { get; set; }
     }
 }
